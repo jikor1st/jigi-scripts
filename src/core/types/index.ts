@@ -1,1 +1,1 @@
-export type { PageLayout } from './page-layout';
+export type { PageLayout } from './page-layout.type';

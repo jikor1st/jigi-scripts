@@ -1,7 +1,7 @@
 import React from 'react';
 
 // meta-components
-import { ErrorBoundary, SSRSafeSuspense } from '@/meta-components';
+import { ErrorBoundary, SSRSafeSuspense } from '@/core-components';
 
 // types
 type ErrorBoundaryProps = React.ComponentProps<typeof ErrorBoundary>;
