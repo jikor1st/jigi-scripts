@@ -7,7 +7,7 @@ interface TestData {
 
 const dummyApi = {
   get: {
-    test: ({
+    useTest: ({
       serverTime = 1000,
       occurError,
     }: {
