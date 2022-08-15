@@ -13,7 +13,7 @@ interface ErrorFallbackProps {
 
 const GetDummyComponent = ({ isLoading = false }) => {
   if (isLoading) return <>로딩중입니다.</>;
-
+  // 자동 배포 테스트
   const { data: test } = dummyApi.get.test({
     serverTime: 2000,
     occurError: {
