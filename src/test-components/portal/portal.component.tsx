@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 // constants
-import { INITIAL_PORTAL_ID } from '@/core/constants';
+import { INITIAL_PORTAL_ID } from '@/lib/constants';
 
 interface PortalProps {
   children: React.ReactNode;

@@ -1,4 +1,4 @@
-import { INITIAL_PORTAL_ID } from '@/core/constants';
+import { INITIAL_PORTAL_ID } from '@/lib/constants';
 
 interface PortalProviderProps {
   portalKey?: string;

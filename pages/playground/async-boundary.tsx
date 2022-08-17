@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { PageLayout } from '@/core/types';
+import { PageLayout } from '@/lib/types';
 
 import { AsyncBoundary } from '@/core-components';
 
