@@ -1,1 +1,3 @@
-export { globalTheme } from './theme-provide';
+export * from './themeProvide';
+export * from './themeType';
+export * from './createthemeStyles';

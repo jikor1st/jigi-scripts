@@ -1,4 +1,4 @@
-import { Box } from '@/base-components';
+import { Box } from '@/baseComponents';
 
 const DesignSystemPage = () => {
   return <>{/* <Box>1</Box> */}</>;

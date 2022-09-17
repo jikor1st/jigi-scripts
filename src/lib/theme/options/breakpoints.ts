@@ -6,22 +6,35 @@ lg : large
 xl : extra large
 xxl : extra extra large
  */
+import type { ThemeBreakpoints } from '../themeType';
 
-const breakpointsOptions = {
-  options: {
+const PRECISION = 0.02;
+
+export const breakpointsOptions: ThemeBreakpoints = {
+  values: {
     xs: 375,
-    sm: 576,
+    sm: 576, // mobile
     md: 768,
-    lg: 992,
-    xl: 1200,
-    xxl: 1400,
+    lg: 992, // tablet
+    xl: 1200, // over desktop
+    xxl: 1440,
   },
-  media: {
-    down: () => {},
-    only: () => {},
-    up: () => {},
-    not: () => {},
+  down(point) {
+    const value = this.values[point];
+    return `@media (max-width:${value - PRECISION}px)`;
+  },
+  up(point) {
+    const value = this.values[point];
+    return `@media (min-width:${value}px)`;
+  },
+  only(sPoint, ePoint) {
+    const sValue = this.values[sPoint];
+    const eValue = this.values[ePoint];
+    return `@media (min-width:${sValue}px) and (max-width:${eValue}px)`;
+  },
+  not(sPoint, ePoint) {
+    const sValue = this.values[sPoint];
+    const eValue = this.values[ePoint];
+    return `@media not all and (min-width:${sValue}px) and (max-width:${eValue}px)`;
   },
 };
-
-export { breakpointsOptions };

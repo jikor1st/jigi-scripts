@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { PageLayout } from '@/lib/types';
+import { PageLayoutProps } from '@/lib/types';
 
-import { AsyncBoundary } from '@/core-components';
+import { AsyncBoundary } from '@/extendsComponents';
 
 import { dummyApi } from '@/lib/api';
 
@@ -32,7 +32,7 @@ const ErrorFallback = ({ error, onClickReloading }: ErrorFallbackProps) => {
   );
 };
 
-const AsyncBoundaryPage: PageLayout = () => {
+const AsyncBoundaryPage: PageLayoutProps = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const handleNewError = () => {
     setIsError(true);

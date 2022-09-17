@@ -20,7 +20,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-query": "^3.39.2",
-    "resize-observer-polyfill": "^1.5.1"
+    "recoil": "^0.7.5",
+    "resize-observer-polyfill": "^1.5.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
@@ -33,9 +35,11 @@
     "@storybook/manager-webpack5": "^6.5.10",
     "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
+    "@svgr/webpack": "^6.3.1",
     "@types/node": "18.7.3",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
+    "@types/uuid": "^8.3.4",
     "babel-loader": "^8.2.5",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",

@@ -1,1 +1,1 @@
-export { PageLayoutContainer } from './page-layout';
+export { PageLayout } from './pageLayout';

@@ -3,8 +3,8 @@ import { NextPage } from 'next';
 
 type GetLayout = (page: ReactElement) => ReactNode;
 
-type PageLayout<P = {}> = NextPage<P> & {
+type PageLayoutProps<P = {}> = NextPage<P> & {
   getLayout?: GetLayout;
 };
 
-export type { PageLayout };
+export type { PageLayoutProps };

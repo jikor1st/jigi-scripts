@@ -1,1 +1,1 @@
-export { WheelSlider } from './wheel-slider.class';
+export { WheelSliderCanvas } from './wheel-slider-canvas.class';
