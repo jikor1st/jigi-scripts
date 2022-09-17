@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { PageLayout } from '@/core/types';
+import { PageLayoutProps } from '@/lib/types';
 
-import { AsyncBoundary } from '@/meta-components';
+import { AsyncBoundary } from '@/extendsComponents';
 
 import { dummyApi } from '@/lib/api';
 
@@ -13,7 +13,6 @@ interface ErrorFallbackProps {
 
 const GetDummyComponent = ({ isLoading = false }) => {
   if (isLoading) return <>로딩중입니다.</>;
-  // 자동 배포 테스트
   const { data: test } = dummyApi.get.useTest({
     serverTime: 2000,
     occurError: {
@@ -33,7 +32,7 @@ const ErrorFallback = ({ error, onClickReloading }: ErrorFallbackProps) => {
   );
 };
 
-const AsyncBoundaryPage: PageLayout = () => {
+const AsyncBoundaryPage: PageLayoutProps = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const handleNewError = () => {
     setIsError(true);

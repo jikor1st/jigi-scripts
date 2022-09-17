@@ -1,6 +1,8 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React from 'react';
 
+import { PortalRoot } from '@/extendsComponents';
+
 export default class DocumentPage extends Document {
   render() {
     return (
@@ -40,6 +42,7 @@ export default class DocumentPage extends Document {
         <body>
           <div id="root">
             <Main />
+            <PortalRoot />
             <NextScript />
           </div>
         </body>

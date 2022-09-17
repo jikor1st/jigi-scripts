@@ -1,2 +1,5 @@
-export { fakePromise } from './fake-promise.util';
-export { utility } from './utility.util';
+export { fakePromise } from './fakePromise';
+export { utility } from './utility';
+
+export { domController } from './domController';
+export type { RectMethod } from './domController';

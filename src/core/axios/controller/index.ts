@@ -1,1 +1,0 @@
-export { axiosController } from './controller';
