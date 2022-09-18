@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 const SListItem = styled.li(({ theme }) => {
   return {
+    color: theme.palette.text.primary,
     position: 'relative',
     ...theme.typography.body1,
     paddingLeft: 10,

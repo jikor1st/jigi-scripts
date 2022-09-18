@@ -42,12 +42,61 @@ const getInvertColor = (hex: string) => {
   return '#' + r.padStart(2) + g.padStart(2) + b.padStart(2);
 };
 
+const clipboard = (function () {
+  let textArea: HTMLTextAreaElement | null = null;
+  let copy = null;
+
+  function isOS() {
+    return navigator.userAgent.match(/ipad|iphone/i);
+  }
+
+  function createTextArea(text: string) {
+    textArea = document.createElement('textArea') as HTMLTextAreaElement;
+    textArea.value = text;
+    document.body.appendChild(textArea);
+  }
+
+  function selectText() {
+    if (!textArea) return;
+    let range: Range | null = null;
+    let selection: Selection | null = null;
+
+    if (isOS()) {
+      range = document.createRange();
+      range.selectNodeContents(textArea);
+      selection = window.getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+      textArea.setSelectionRange(0, 999999);
+    } else {
+      textArea.select();
+    }
+  }
+
+  function copyToClipboard() {
+    document.execCommand('copy');
+    if (textArea) document.body.removeChild(textArea);
+  }
+
+  copy = function (text: string) {
+    createTextArea(text);
+    selectText();
+    copyToClipboard();
+  };
+
+  return {
+    copy: copy,
+  };
+})();
+
 const utility = {
   getRandom,
   getType,
   getQueryParams,
   getRandomColor,
   getInvertColor,
+  // tools
+  clipboard,
 };
 
 export { utility };

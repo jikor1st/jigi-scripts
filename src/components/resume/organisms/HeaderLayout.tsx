@@ -39,6 +39,7 @@ const SLogo = styled.h1(() => {
 const SSubTitle = styled.span(({ theme }) => {
   return {
     display: 'block',
+    color: theme.palette.text.primary,
     marginTop: theme.typography.pxToRem(4),
     marginLeft: theme.typography.pxToRem(-6),
     ...theme.typography.body2,

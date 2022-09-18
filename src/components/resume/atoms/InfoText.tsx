@@ -7,6 +7,7 @@ interface MarginBottom {
 
 const SInfoText = styled.p<MarginBottom>(({ theme, mb }) => {
   return {
+    color: theme.palette.text.primary,
     ...(mb && { marginBottom: theme.typography.pxToRem(mb) }),
     ...theme.typography.subtitle2,
     [theme.breakpoints.down('lg')]: {
