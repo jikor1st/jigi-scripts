@@ -8,9 +8,9 @@ import {
 
 // presets
 const COLOR_SCHEME_QUERY = '(prefers-color-scheme: dark)';
-const DARK_MODE_KEY = 'usehooks-ts-dark-mode';
+const DARK_MODE_KEY = 'isDarkMode';
 
-interface UseDarkModeOutput {
+export interface UseDarkModeOutput {
   colorMode: 'light' | 'dark';
   isDarkMode: boolean;
   toggle: () => void;

@@ -7,6 +7,7 @@ interface MarginBottom {
 
 const SListTitle = styled.h3<MarginBottom>(({ theme, mb }) => {
   return {
+    color: theme.palette.text.primary,
     ...(mb && { marginBottom: theme.typography.pxToRem(mb) }),
     ...theme.typography.h5,
     [theme.breakpoints.down('lg')]: {

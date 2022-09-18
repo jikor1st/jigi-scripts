@@ -1,12 +1,30 @@
 /** breakpoints */
 export type Breakpoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
+export type WithBreakpoints<K = string | number> =
+  | Partial<Record<Breakpoints, K>>
+  | string
+  | number
+  | undefined;
+
 export interface ThemeBreakpoints {
   values: Record<Breakpoints, number>;
   down(point: Breakpoints): string;
   up(point: Breakpoints): string;
   only(sPoint: Breakpoints, ePoint: Breakpoints): string;
   not(sPoint: Breakpoints, ePoint: Breakpoints): string;
+  breakpointsCss(
+    cssProperty: string,
+    style: WithBreakpoints,
+  ): {
+    [key: string]:
+      | {
+          [key: string]: string | number;
+        }
+      | string
+      | number
+      | {};
+  };
 }
 
 /** typography */
@@ -64,6 +82,7 @@ export interface PaletteBasic {
 }
 
 export interface Palette {
+  mode: 'light' | 'dark';
   primary: PaletteState;
   secondary: PaletteState;
   error: PaletteState;

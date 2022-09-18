@@ -7,3 +7,5 @@ export * from './HeadLineTitle';
 export * from './InfoText';
 export * from './CopyLink';
 export * from './SkillTag';
+export * from './DarkMode';
+export * from './SelectBox';

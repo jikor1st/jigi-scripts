@@ -1,1 +1,1 @@
-export { Seo } from './seo.component';
+export { Seo } from './Seo';

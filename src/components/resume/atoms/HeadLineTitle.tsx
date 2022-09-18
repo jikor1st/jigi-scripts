@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 const SHeadLineTitle = styled.h2(({ theme }) => {
   return {
+    color: theme.palette.text.primary,
     transform: 'translateY(-50%)',
     ...theme.typography.h1,
     [theme.breakpoints.down('lg')]: {

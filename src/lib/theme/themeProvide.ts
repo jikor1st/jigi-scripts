@@ -24,8 +24,9 @@ const globalThemeOptions = ({
   zIndex: zIndexOptions,
 });
 
-function useGlobalTheme() {
+export function useGlobalTheme() {
   const { colorMode } = useDarkMode();
+
   const htmlFontSize = 16;
   return {
     globalTheme: useMemo(
@@ -34,5 +35,3 @@ function useGlobalTheme() {
     ),
   };
 }
-
-export { useGlobalTheme };

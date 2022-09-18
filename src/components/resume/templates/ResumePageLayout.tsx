@@ -2,8 +2,9 @@ import styled from '@emotion/styled';
 
 import { HeaderLayout, MainLayout } from '../organisms';
 
-const SContainer = styled.div(() => {
+const SContainer = styled.div(({ theme }) => {
   return {
+    background: theme.palette.background.paper,
     minWidth: '320px',
   };
 });

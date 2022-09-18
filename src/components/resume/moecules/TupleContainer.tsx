@@ -29,9 +29,7 @@ const SRight = styled.div(({ theme }) => {
   };
 });
 const SRightContents = styled.div(() => {
-  return {
-    marginTop: 110,
-  };
+  return {};
 });
 
 interface TupleContainerProps {
@@ -47,8 +45,8 @@ export function TupleContainer({ left, right }: TupleContainerProps) {
     <SContainer>
       <SLeft>{left}</SLeft>
       <SRight>
-        <InfoText>{right.inform}</InfoText>
-        <SRightContents>{right.contents}</SRightContents>
+        {right.inform && <InfoText mb={110}>{right.inform}</InfoText>}
+        {right.contents && <SRightContents>{right.contents}</SRightContents>}
       </SRight>
     </SContainer>
   );

@@ -1,25 +1,25 @@
 import { ReactNode } from 'react';
 import styled from '@emotion/styled';
 
-interface MarginBottom {
-  mb?: number;
-}
+import { WithBreakpoints } from '@/lib/theme';
 
-const STitle = styled.h2<MarginBottom>(({ theme, mb }) => {
+const STitle = styled.h2<{ mb?: WithBreakpoints }>(({ theme, mb }) => {
   return {
+    color: theme.palette.text.primary,
     ...theme.typography.h2,
-    ...(mb && { marginBottom: theme.typography.pxToRem(mb) }),
     [theme.breakpoints.down('lg')]: {
       ...theme.typography.h3,
     },
     [theme.breakpoints.down('sm')]: {
       ...theme.typography.h4,
     },
+    ...theme.breakpoints.breakpointsCss('marginBottom', mb),
   };
 });
 
-interface SectionTitleProps extends MarginBottom {
+interface SectionTitleProps {
   children?: ReactNode;
+  mb?: WithBreakpoints;
 }
 
 export function SectionTitle({ children, mb }: SectionTitleProps) {

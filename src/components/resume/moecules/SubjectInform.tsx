@@ -9,6 +9,7 @@ const SContainer = styled.div(({ theme }) => {
 });
 const STitle = styled.h4(({ theme }) => {
   return {
+    color: theme.palette.text.primary,
     ...theme.typography.h4,
     [theme.breakpoints.down('lg')]: {
       ...theme.typography.h5,
@@ -20,6 +21,7 @@ const STitle = styled.h4(({ theme }) => {
 });
 const SSubTitle = styled.h5(({ theme }) => {
   return {
+    color: theme.palette.text.primary,
     marginTop: theme.typography.pxToRem(24),
     ...theme.typography.subtitle1,
     [theme.breakpoints.down('lg')]: {
