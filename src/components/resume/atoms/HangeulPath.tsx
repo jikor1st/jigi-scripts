@@ -29,13 +29,11 @@ export const HangeulPath = memo(
     variant,
     stroke = '#000000',
     strokeWidth,
-    dropShadow = '',
     registerSVG,
   }: HangeulPathProps) => {
     return (
       <HangeulBox>
         {createElement(HANGEUL[variant], {
-          dropShadow: dropShadow,
           stroke: stroke,
           strokeWidth: strokeWidth,
           visibility: 'hidden',
