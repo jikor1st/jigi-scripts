@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
 import { useConditionEffect, usePathAnimation } from '@/lib/hooks';
@@ -182,21 +182,15 @@ export function Headline({}: ResumeHead) {
   const hangeulIndexNext = () =>
     setHangeulIndex(prev => (prev !== hangeulArray.length - 1 ? prev + 1 : 0));
 
-  useConditionEffect(
-    () => {
-      if (svgElRef.current) {
-        svgElRef.current.style.visibility = 'visible';
-      }
-      if (pathStatusRef.current.type === '') {
-        erasePath();
-      }
-      drawPath();
-    },
-    [hangeulIndex, theme.palette.primary.main, theme.palette.shadow.hangeul],
-    {
-      componentDidMountCondition: false,
-    },
-  );
+  useEffect(() => {
+    if (svgElRef.current) {
+      svgElRef.current.style.visibility = 'visible';
+    }
+    if (pathStatusRef.current.type === '') {
+      erasePath();
+    }
+    drawPath();
+  }, [hangeulIndex, theme.palette.primary.main, theme.palette.shadow.hangeul]);
 
   return (
     <SContainer>
