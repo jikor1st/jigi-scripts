@@ -4,12 +4,9 @@ import { css } from '@emotion/react';
 import { cssGenerator } from './hangeulUtils';
 
 export const SVG = styled.svg<Omit<HangeulSVGProps, 'stroke' | 'strokeWidth'>>(
-  ({ dropShadow, visibility, opacity }) => {
+  ({ visibility, opacity }) => {
     return {
       ...css({
-        ...cssGenerator(dropShadow, {
-          filter: `drop-shadow(${dropShadow})`,
-        }),
         ...cssGenerator(visibility, {
           visibility: visibility,
         }),

@@ -10,4 +10,7 @@ module.exports = {
     });
     return config;
   },
+  images: {
+    domains: ['jikor1st.github.io'],
+  },
 };
