@@ -38,6 +38,10 @@ export default class DocumentPage extends Document {
           {/* <link rel="stylesheet" href="/assets/style/reset.css" />
           <link rel="stylesheet" as="font" href="/assets/fonts/fonts.css" /> */}
           {/* 폰트 */}
+          <meta
+            name="google-site-verification"
+            content="zFm4zq7bfKIFVMRavwKLUq6R6Ki2Mp5agFGguBWY-qk"
+          />
         </Head>
         <body>
           <div id="root">
