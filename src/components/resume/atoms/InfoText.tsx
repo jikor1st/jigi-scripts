@@ -1,25 +1,23 @@
 import { ReactNode } from 'react';
 import styled from '@emotion/styled';
 
-interface MarginBottom {
-  mb?: number;
-}
+import { CSSWithBreakpoints } from '@/lib/theme';
 
-const SInfoText = styled.p<MarginBottom>(({ theme, mb }) => {
+const SInfoText = styled.p<CSSWithBreakpoints>(({ theme, sx }) => {
   return {
     color: theme.palette.text.primary,
-    ...(mb && { marginBottom: theme.typography.pxToRem(mb) }),
     ...theme.typography.subtitle2,
     [theme.breakpoints.down('lg')]: {
       ...theme.typography.body1,
     },
+    ...theme.breakpoints.createStyle(sx),
   };
 });
 
-interface InfoTextProps extends MarginBottom {
+interface InfoTextProps extends CSSWithBreakpoints {
   children?: ReactNode;
 }
 
-export function InfoText({ children, mb }: InfoTextProps) {
-  return <SInfoText mb={mb}>{children}</SInfoText>;
+export function InfoText({ children, ...rest }: InfoTextProps) {
+  return <SInfoText {...rest}>{children}</SInfoText>;
 }

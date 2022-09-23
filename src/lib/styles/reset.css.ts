@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
-
-const resetCss = css`
+export const ResetCss = css`
   /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -140,5 +139,3 @@ const resetCss = css`
     cursor: pointer;
   }
 `;
-
-export { resetCss };

@@ -1,4 +1,5 @@
-const lightPalette = {
+import { ThemePalette } from '../themeType';
+const lightPalette: ThemePalette = {
   mode: 'light',
   primary: {
     main: '#0077FF',
@@ -26,7 +27,7 @@ const lightPalette = {
   },
   background: {
     paper: 'rgba(255,255,255,0.72)',
-    canvas: '#EFEFF1',
+    canvas: '#F2F2F6',
   },
   text: {
     primary: '#222222',
@@ -44,6 +45,7 @@ const lightPalette = {
   },
   shadow: {
     modal: '-3px 0px 8px 0px rgba(29, 32, 35, 0.12)',
+    hangeul: '0 3px 9px #0f7af477',
   },
   unstabled_scrollbar: {
     '&::-webkit-scrollbar': {
@@ -58,8 +60,8 @@ const lightPalette = {
       backgroundColor: 'rgba(34,34,34,.06)',
     },
   },
-} as const;
-const darkPalette = {
+};
+const darkPalette: ThemePalette = {
   mode: 'dark',
   primary: {
     main: '#0077FF',
@@ -90,21 +92,22 @@ const darkPalette = {
     canvas: '#242424',
   },
   text: {
-    primary: '#ffffff',
+    primary: '#f3f3f3',
     secondary: '#7E7E7E',
     light: '#B5B5B5',
   },
   divider: {
     primary: '#808080',
-    secondary: '#D4D4D4',
+    secondary: '#d4d4d442',
     light: '#FBFBFB',
   },
   actions: {
     disabled: 'rgba(34,34,34,.32)',
-    hover: 'rgba(255,255,255,.14)',
+    hover: 'rgba(255,255,255,.24)',
   },
   shadow: {
     modal: '-3px 0px 8px 0px rgba(29, 32, 35, 0.12)',
+    hangeul: '0 10px 20px #0f7af477',
   },
   unstabled_scrollbar: {
     '&::-webkit-scrollbar': {
@@ -119,7 +122,9 @@ const darkPalette = {
       backgroundColor: 'rgba(34,34,34,.06)',
     },
   },
-} as const;
+};
 
-export const paletteOptions = (mode: 'light' | 'dark' = 'light') =>
-  mode === 'light' ? lightPalette : darkPalette;
+export const paletteOptions = {
+  light: lightPalette,
+  dark: darkPalette,
+};

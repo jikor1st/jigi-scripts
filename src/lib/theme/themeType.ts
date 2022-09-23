@@ -1,30 +1,34 @@
+// import * as CSS from 'csstype';
+import { CSSProperties } from 'react';
+
 /** breakpoints */
 export type Breakpoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
-export type WithBreakpoints<K = string | number> =
-  | Partial<Record<Breakpoints, K>>
-  | string
-  | number
-  | undefined;
+export type BreakpointsObjects<V = any> = {
+  [K in Breakpoints]?: V;
+};
+export type CreateStylesReturns = {
+  [K in keyof CSSProperties]:
+    | BreakpointsObjects<CSSProperties[K]>
+    | CSSProperties[K]
+    | string
+    | number
+    | any;
+};
 
 export interface ThemeBreakpoints {
   values: Record<Breakpoints, number>;
-  down(point: Breakpoints): string;
-  up(point: Breakpoints): string;
-  only(sPoint: Breakpoints, ePoint: Breakpoints): string;
-  not(sPoint: Breakpoints, ePoint: Breakpoints): string;
-  breakpointsCss(
-    cssProperty: string,
-    style: WithBreakpoints,
-  ): {
-    [key: string]:
-      | {
-          [key: string]: string | number;
-        }
-      | string
-      | number
-      | {};
-  };
+  down(point: Breakpoints | number): string;
+  up(point: Breakpoints | number): string;
+  only(sPoint: Breakpoints | number, ePoint: Breakpoints | number): string;
+  not(sPoint: Breakpoints | number, ePoint: Breakpoints | number): string;
+  createStyle(style?: CreateStylesReturns): CreateStylesReturns;
+}
+
+/** createCssStyles */
+
+export interface CSSWithBreakpoints {
+  sx?: CreateStylesReturns;
 }
 
 /** typography */
@@ -99,6 +103,7 @@ export interface Palette {
   };
   shadow: {
     modal: string;
+    hangeul: string;
   };
   unstabled_scrollbar: {
     '&::-webkit-scrollbar': {

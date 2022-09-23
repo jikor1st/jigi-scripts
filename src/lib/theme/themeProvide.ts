@@ -1,7 +1,4 @@
-import { useMemo } from 'react';
-
-import { Theme } from '@emotion/react';
-
+import { useEffect, useState } from 'react';
 import { useDarkMode } from '@/lib/hooks';
 
 import {
@@ -11,27 +8,32 @@ import {
   zIndexOptions,
 } from './options';
 
-const globalThemeOptions = ({
-  colorMode,
-  htmlFontSize,
-}: {
-  colorMode: 'light' | 'dark';
-  htmlFontSize: number;
-}): Theme => ({
+const defaultTheme = {
+  typography: typographyOptions,
   breakpoints: breakpointsOptions,
-  typography: typographyOptions(htmlFontSize),
-  palette: paletteOptions(colorMode),
   zIndex: zIndexOptions,
-});
+};
+
+const lightGlobalTheme = {
+  ...defaultTheme,
+  palette: paletteOptions.light,
+};
+
+const darkGlobalTheme = {
+  ...defaultTheme,
+  palette: paletteOptions.dark,
+};
 
 export function useGlobalTheme() {
-  const { colorMode } = useDarkMode();
+  const [prepareGlobalTheme, setPrepareGlobalTheme] = useState(false);
 
-  const htmlFontSize = 16;
+  const { isDarkMode } = useDarkMode();
+
+  useEffect(() => {
+    setPrepareGlobalTheme(true);
+  }, []);
   return {
-    globalTheme: useMemo(
-      () => globalThemeOptions({ colorMode, htmlFontSize }),
-      [colorMode, htmlFontSize],
-    ),
+    prepareGlobalTheme,
+    globalTheme: !isDarkMode ? lightGlobalTheme : darkGlobalTheme,
   };
 }

@@ -3,7 +3,9 @@ import { ReactNode } from 'react';
 import styled from '@emotion/styled';
 
 const SMain = styled.main(() => {
-  return {};
+  return {
+    paddingBottom: 110,
+  };
 });
 
 interface ResumMainProps {

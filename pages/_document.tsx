@@ -34,7 +34,7 @@ export default class DocumentPage extends Document {
             href="/favicon/safari-pinned-tab.svg"
             color="#5bbad5"
           /> */}
-          {/* <meta name="theme-color" content="#ffffff" /> */}
+          <meta name="theme-color" content="#ffffff" />
           {/* <link rel="stylesheet" href="/assets/style/reset.css" />
           <link rel="stylesheet" as="font" href="/assets/fonts/fonts.css" /> */}
           {/* 폰트 */}
@@ -50,5 +50,3 @@ export default class DocumentPage extends Document {
     );
   }
 }
-
-// DocumentPage.getInitialProps = async ctx => {};

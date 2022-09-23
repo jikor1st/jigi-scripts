@@ -12,9 +12,8 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@emotion/babel-plugin": "^11.10.0",
-    "@emotion/react": "^11.10.0",
-    "@emotion/styled": "^11.10.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "axios": "^0.27.2",
     "next": "12.2.5",
     "react": "18.2.0",
@@ -26,6 +25,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
+    "@emotion/babel-plugin": "^11.10.2",
     "@jigi-station/ts-swipeable-cards-react": "^0.1.13",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",

@@ -13,89 +13,90 @@ const fontWeightValues = {
 const lineHeightMultiple = 1.5;
 
 function pxToRem(px: number, htmlFontSize: number): `${number}rem` {
-  return `${px / htmlFontSize}rem`;
+  return `${parseFloat((px / htmlFontSize).toFixed(3))}rem`;
 }
 function fontWeightStrToNum(weightStr: keyof typeof fontWeightValues) {
   return fontWeightValues[weightStr];
 }
 
-export const typographyOptions = (htmlFontSize = 16) =>
-  ({
-    htmlFontSize: htmlFontSize,
-    fontWeight: fontWeightValues,
-    pxToRem(px: number) {
-      return `${px / this.htmlFontSize}rem`;
-    },
-    h1: {
-      fontFamily: 'Pretendard',
-      fontSize: pxToRem(68, htmlFontSize),
-      lineHeight: pxToRem(68 * lineHeightMultiple, htmlFontSize),
-      fontWeight: fontWeightStrToNum('SemiBold'),
-    },
-    h2: {
-      fontFamily: 'Pretendard',
-      fontSize: pxToRem(60, htmlFontSize),
-      lineHeight: pxToRem(60 * lineHeightMultiple, htmlFontSize),
-      fontWeight: fontWeightStrToNum('SemiBold'),
-    },
-    h3: {
-      fontFamily: 'Pretendard',
-      fontSize: pxToRem(48, htmlFontSize),
-      lineHeight: pxToRem(48 * lineHeightMultiple, htmlFontSize),
-      fontWeight: fontWeightStrToNum('SemiBold'),
-    },
-    h4: {
-      fontFamily: 'Pretendard',
-      fontSize: pxToRem(40, htmlFontSize),
-      lineHeight: pxToRem(40 * lineHeightMultiple, htmlFontSize),
-      fontWeight: fontWeightStrToNum('Bold'),
-    },
-    h5: {
-      fontFamily: 'Pretendard',
-      fontSize: pxToRem(32, htmlFontSize),
-      lineHeight: pxToRem(32 * lineHeightMultiple, htmlFontSize),
-      fontWeight: fontWeightStrToNum('SemiBold'),
-    },
-    h6: {
-      fontFamily: 'Pretendard',
-      fontSize: pxToRem(28, htmlFontSize),
-      lineHeight: pxToRem(28 * lineHeightMultiple, htmlFontSize),
-      fontWeight: fontWeightStrToNum('SemiBold'),
-    },
-    subtitle1: {
-      fontFamily: 'Pretendard',
-      fontSize: pxToRem(24, htmlFontSize),
-      lineHeight: pxToRem(24 * lineHeightMultiple, htmlFontSize),
-      fontWeight: fontWeightStrToNum('Medium'),
-    },
-    subtitle2: {
-      fontFamily: 'Pretendard',
-      fontSize: pxToRem(18, htmlFontSize),
-      lineHeight: pxToRem(18 * lineHeightMultiple, htmlFontSize),
-      fontWeight: fontWeightStrToNum('Regular'),
-    },
-    body1: {
-      fontFamily: 'Pretendard',
-      fontSize: pxToRem(16, htmlFontSize),
-      lineHeight: pxToRem(16 * lineHeightMultiple, htmlFontSize),
-      fontWeight: fontWeightStrToNum('Regular'),
-    },
-    body2: {
-      fontFamily: 'Pretendard',
-      fontSize: pxToRem(14, htmlFontSize),
-      lineHeight: pxToRem(14 * lineHeightMultiple, htmlFontSize),
-      fontWeight: fontWeightStrToNum('Regular'),
-    },
-    caption: {
-      fontFamily: 'Pretendard',
-      fontSize: pxToRem(13, htmlFontSize),
-      lineHeight: pxToRem(13 * lineHeightMultiple, htmlFontSize),
-      fontWeight: fontWeightStrToNum('Regular'),
-    },
-    overline: {
-      fontFamily: 'Pretendard',
-      fontSize: pxToRem(11, htmlFontSize),
-      lineHeight: pxToRem(11 * lineHeightMultiple, htmlFontSize),
-      fontWeight: fontWeightStrToNum('Regular'),
-    },
-  } as const);
+const initialHtmlFontSize = 16;
+
+export const typographyOptions = {
+  htmlFontSize: initialHtmlFontSize,
+  fontWeight: fontWeightValues,
+  pxToRem(px: number) {
+    return pxToRem(px, this.htmlFontSize);
+  },
+  h1: {
+    fontFamily: 'Pretendard',
+    fontSize: pxToRem(48, initialHtmlFontSize),
+    lineHeight: pxToRem(48 * lineHeightMultiple, initialHtmlFontSize),
+    fontWeight: fontWeightStrToNum('SemiBold'),
+  },
+  h2: {
+    fontFamily: 'Pretendard',
+    fontSize: pxToRem(44, initialHtmlFontSize),
+    lineHeight: pxToRem(44 * lineHeightMultiple, initialHtmlFontSize),
+    fontWeight: fontWeightStrToNum('SemiBold'),
+  },
+  h3: {
+    fontFamily: 'Pretendard',
+    fontSize: pxToRem(40, initialHtmlFontSize),
+    lineHeight: pxToRem(40 * lineHeightMultiple, initialHtmlFontSize),
+    fontWeight: fontWeightStrToNum('SemiBold'),
+  },
+  h4: {
+    fontFamily: 'Pretendard',
+    fontSize: pxToRem(36, initialHtmlFontSize),
+    lineHeight: pxToRem(36 * lineHeightMultiple, initialHtmlFontSize),
+    fontWeight: fontWeightStrToNum('Bold'),
+  },
+  h5: {
+    fontFamily: 'Pretendard',
+    fontSize: pxToRem(32, initialHtmlFontSize),
+    lineHeight: pxToRem(32 * lineHeightMultiple, initialHtmlFontSize),
+    fontWeight: fontWeightStrToNum('SemiBold'),
+  },
+  h6: {
+    fontFamily: 'Pretendard',
+    fontSize: pxToRem(28, initialHtmlFontSize),
+    lineHeight: pxToRem(28 * lineHeightMultiple, initialHtmlFontSize),
+    fontWeight: fontWeightStrToNum('SemiBold'),
+  },
+  subtitle1: {
+    fontFamily: 'Pretendard',
+    fontSize: pxToRem(24, initialHtmlFontSize),
+    lineHeight: pxToRem(24 * lineHeightMultiple, initialHtmlFontSize),
+    fontWeight: fontWeightStrToNum('Medium'),
+  },
+  subtitle2: {
+    fontFamily: 'Pretendard',
+    fontSize: pxToRem(18, initialHtmlFontSize),
+    lineHeight: pxToRem(18 * lineHeightMultiple, initialHtmlFontSize),
+    fontWeight: fontWeightStrToNum('Regular'),
+  },
+  body1: {
+    fontFamily: 'Pretendard',
+    fontSize: pxToRem(16, initialHtmlFontSize),
+    lineHeight: pxToRem(16 * lineHeightMultiple, initialHtmlFontSize),
+    fontWeight: fontWeightStrToNum('Regular'),
+  },
+  body2: {
+    fontFamily: 'Pretendard',
+    fontSize: pxToRem(14, initialHtmlFontSize),
+    lineHeight: pxToRem(14 * lineHeightMultiple, initialHtmlFontSize),
+    fontWeight: fontWeightStrToNum('Regular'),
+  },
+  caption: {
+    fontFamily: 'Pretendard',
+    fontSize: pxToRem(13, initialHtmlFontSize),
+    lineHeight: pxToRem(13 * lineHeightMultiple, initialHtmlFontSize),
+    fontWeight: fontWeightStrToNum('Regular'),
+  },
+  overline: {
+    fontFamily: 'Pretendard',
+    fontSize: pxToRem(11, initialHtmlFontSize),
+    lineHeight: pxToRem(11 * lineHeightMultiple, initialHtmlFontSize),
+    fontWeight: fontWeightStrToNum('Regular'),
+  },
+};

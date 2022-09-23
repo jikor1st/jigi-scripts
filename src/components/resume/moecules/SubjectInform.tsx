@@ -2,9 +2,14 @@ import styled from '@emotion/styled';
 
 const SContainer = styled.div(({ theme }) => {
   return {
-    position: 'sticky',
-    top: 80,
-    left: 0,
+    [theme.breakpoints.up('lg')]: {
+      position: 'sticky',
+      top: 80,
+      left: 0,
+    },
+    [theme.breakpoints.down('lg')]: {
+      marginBottom: theme.typography.pxToRem(24),
+    },
   };
 });
 const STitle = styled.h4(({ theme }) => {

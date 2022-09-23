@@ -45,7 +45,22 @@ export function TupleContainer({ left, right }: TupleContainerProps) {
     <SContainer>
       <SLeft>{left}</SLeft>
       <SRight>
-        {right.inform && <InfoText mb={110}>{right.inform}</InfoText>}
+        {right.inform && (
+          <InfoText
+            sx={{
+              marginTop: {
+                sm: 0,
+                lg: 12,
+              },
+              marginBottom: {
+                sm: 40,
+                lg: 110,
+              },
+            }}
+          >
+            {right.inform}
+          </InfoText>
+        )}
         {right.contents && <SRightContents>{right.contents}</SRightContents>}
       </SRight>
     </SContainer>

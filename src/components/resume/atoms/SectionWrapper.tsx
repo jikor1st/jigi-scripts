@@ -1,7 +1,13 @@
 import { ReactNode } from 'react';
 import styled from '@emotion/styled';
 
-const SSection = styled.section(({ theme }) => {
+import { CSSWithBreakpoints } from '@/lib/theme';
+
+interface SSectionProps extends CSSWithBreakpoints {
+  styles?: React.CSSProperties;
+}
+
+const SSection = styled.section<SSectionProps>(({ theme, sx, styles }) => {
   return {
     maxWidth: theme.breakpoints.values.xxl,
     margin: '0 auto',
@@ -9,20 +15,17 @@ const SSection = styled.section(({ theme }) => {
       marginBottom: 200,
     },
     padding: '0 20px',
-    marginTop: `-${theme.typography.h2.lineHeight}`,
-    [theme.breakpoints.down('lg')]: {
-      marginTop: `-${theme.typography.h3.lineHeight}`,
-    },
-    [theme.breakpoints.down('sm')]: {
-      marginTop: `-${theme.typography.h4.lineHeight}`,
-    },
+    ...theme.breakpoints.createStyle(sx),
+    ...styles,
   };
 });
 
-interface SectionWrapperProps {
+interface SectionWrapperProps extends CSSWithBreakpoints {
+  id?: string;
   children?: ReactNode;
+  styles?: React.CSSProperties | { [key: string]: React.CSSProperties };
 }
 
-export function SectionWrapper({ children }: SectionWrapperProps) {
-  return <SSection>{children}</SSection>;
+export function SectionWrapper({ children, ...rest }: SectionWrapperProps) {
+  return <SSection {...rest}>{children}</SSection>;
 }

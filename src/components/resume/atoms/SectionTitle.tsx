@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import styled from '@emotion/styled';
 
-import { WithBreakpoints } from '@/lib/theme';
+import { CSSWithBreakpoints } from '@/lib/theme';
 
-const STitle = styled.h2<{ mb?: WithBreakpoints }>(({ theme, mb }) => {
+const STitle = styled.h2<CSSWithBreakpoints>(({ theme, sx }) => {
   return {
     color: theme.palette.text.primary,
     ...theme.typography.h2,
@@ -13,15 +13,14 @@ const STitle = styled.h2<{ mb?: WithBreakpoints }>(({ theme, mb }) => {
     [theme.breakpoints.down('sm')]: {
       ...theme.typography.h4,
     },
-    ...theme.breakpoints.breakpointsCss('marginBottom', mb),
+    ...theme.breakpoints.createStyle(sx),
   };
 });
 
-interface SectionTitleProps {
+interface SectionTitleProps extends CSSWithBreakpoints {
   children?: ReactNode;
-  mb?: WithBreakpoints;
 }
 
-export function SectionTitle({ children, mb }: SectionTitleProps) {
-  return <STitle mb={mb}>{children}</STitle>;
+export function SectionTitle({ children, ...rest }: SectionTitleProps) {
+  return <STitle {...rest}>{children}</STitle>;
 }

@@ -9,6 +9,7 @@ import {
   Introduction,
   Technology,
   Experience,
+  ContactAndOperate,
 } from '@/components/resume/templates';
 
 const SContainer = styled.div(() => {
@@ -28,6 +29,7 @@ export default function ResumePage() {
         <Introduction />
         <Technology />
         <Experience />
+        <ContactAndOperate />
       </SContainer>
     </>
   );
