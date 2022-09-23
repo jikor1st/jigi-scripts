@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 import { Icon } from '@/baseComponents';
 
@@ -15,6 +15,9 @@ const SContainer = styled.header(({ theme }) => {
     background: theme.palette.background.paper,
     backdropFilter: 'blur(20px)',
     zIndex: theme.zIndex.appBar,
+    [theme.breakpoints.down('lg')]: {
+      height: 58,
+    },
   };
 });
 
@@ -24,6 +27,7 @@ const SWrapper = styled.div(({ theme }) => {
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
+    height: '100%',
     maxWidth: theme.breakpoints.values.xxl,
     margin: '0 auto',
     padding: '0 20px',

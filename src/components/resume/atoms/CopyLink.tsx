@@ -1,16 +1,15 @@
 import { useRef } from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { utility } from '@/lib/utils';
 import { Icon } from '@/baseComponents';
-interface MarginBottom {
-  mb?: number;
-}
 
-const SContainer = styled.div<MarginBottom>(({ theme, mb }) => {
+import { CSSWithBreakpoints } from '@/lib/theme';
+
+const SContainer = styled.div<CSSWithBreakpoints>(({ theme, sx }) => {
   return {
     display: 'flex',
     alignItems: 'center',
-    ...(mb && { marginBottom: theme.typography.pxToRem(mb) }),
+    ...theme.breakpoints.createStyle(sx),
   };
 });
 const SLink = styled.a(({ theme }) => {
@@ -30,6 +29,16 @@ const SLink = styled.a(({ theme }) => {
     },
   };
 });
+const SDisabledLink = styled.p(({ theme }) => {
+  return {
+    marginRight: 8,
+    wordBreak: 'break-all',
+    textDecoration: 'underline',
+    ...theme.typography.body1,
+    fontWeight: theme.typography.fontWeight.Light,
+    color: theme.palette.text.light,
+  };
+});
 const SCopyButton = styled.button(({ theme }) => {
   return {
     padding: 2,
@@ -45,21 +54,26 @@ const SCopyButton = styled.button(({ theme }) => {
   };
 });
 
-interface CopyLinkProps extends MarginBottom {
+interface CopyLinkProps extends CSSWithBreakpoints {
   href: string;
+  disabled?: boolean;
 }
 
-export function CopyLink({ href, mb }: CopyLinkProps) {
+export function CopyLink({ href, disabled = false, ...rest }: CopyLinkProps) {
   const handleCopyLinkToClipboard = () => {
     try {
       utility.clipboard.copy(href);
     } catch (e) {}
   };
   return (
-    <SContainer mb={mb}>
-      <SLink href={href} target={'_blank'}>
-        {href}
-      </SLink>
+    <SContainer {...rest}>
+      {!disabled ? (
+        <SLink href={href} target={'_blank'}>
+          {href}
+        </SLink>
+      ) : (
+        <SDisabledLink>{href}</SDisabledLink>
+      )}
       <SCopyButton onClick={handleCopyLinkToClipboard}>
         <Icon icon="Copy" color="secondary" />
       </SCopyButton>

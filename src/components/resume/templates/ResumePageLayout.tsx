@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
-import { HeaderLayout, MainLayout } from '../organisms';
+import { HeaderLayout, MainLayout, FooterLayout } from '../organisms';
 
 const SContainer = styled.div(({ theme }) => {
   return {
@@ -16,6 +16,7 @@ export function ResumePageLayout({ children }: ResumeLayoutProps) {
     <SContainer>
       <HeaderLayout />
       <MainLayout page={children} />
+      <FooterLayout />
     </SContainer>
   );
 }

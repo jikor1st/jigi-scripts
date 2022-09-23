@@ -1,16 +1,18 @@
-import { useState, useRef, MouseEvent } from 'react';
-import styled from '@emotion/styled';
+import { useState, useRef, MouseEvent, useEffect } from 'react';
+import styled from 'styled-components';
 
 import { Icon } from '@/baseComponents';
 
-const Scontainer = styled.div<{ isPrepare: boolean }>(({ isPrepare }) => {
-  return {
-    position: 'relative',
-    visibility: isPrepare ? 'visible' : 'hidden',
-    opacity: isPrepare ? 1 : 0,
-    transition: 'opacity 0.13s ease',
-  };
-});
+const Scontainer = styled.div<{ isPrepare: boolean }>(
+  ({ theme, isPrepare }) => {
+    return {
+      position: 'relative',
+      visibility: isPrepare ? 'visible' : 'hidden',
+      opacity: isPrepare ? 1 : 0,
+      transition: 'opacity 0.13s ease',
+    };
+  },
+);
 
 const SSelectBox = styled.div<{ isOpen: boolean }>(({ theme, isOpen }) => {
   const backgroundColor = isOpen
@@ -38,6 +40,7 @@ const SSelectBox = styled.div<{ isOpen: boolean }>(({ theme, isOpen }) => {
       color: color,
       transition: transition,
     },
+    boxShadow: theme.palette.shadow.modal,
   };
 });
 
@@ -69,6 +72,7 @@ const SOptionsBox = styled.div<{ selectBoxHeight: number }>(
       borderRadius: 18,
       background: theme.palette.background.paper,
       overflow: 'hidden',
+      boxShadow: theme.palette.shadow.modal,
     };
   },
 );
@@ -144,6 +148,16 @@ export function SelectBox({
   const [selectBoxEl, setSelectBoxEl] = useState<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
+  const [selected, setSelected] = useState<string>('');
+
+  useEffect(() => {
+    const findIndex = options.findIndex(({ value }) => value === selectedValue);
+    if (findIndex !== -1) {
+      const findedValue = options[findIndex].text as string;
+      setSelected(findedValue);
+    }
+  }, [selectedValue]);
+
   const selectBoxHeight = () => {
     if (!selectBoxEl) return 0;
     return selectBoxEl.getBoundingClientRect().height;
@@ -173,7 +187,7 @@ export function SelectBox({
       >
         <SSelected>
           <SSelectedValue className="resume-selected-value">
-            {options.find(({ value }) => value === selectedValue)?.text}
+            {selected}
           </SSelectedValue>
         </SSelected>
         <SSelectIcon isOpen={isOpen}>

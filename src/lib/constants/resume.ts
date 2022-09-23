@@ -1,5 +1,10 @@
+import { IconBaseProps } from '@/baseComponents';
 export const RESUME = {
   introduce: {
+    header: {
+      id: 'introduce',
+      title: '자기소개',
+    },
     category: [
       {
         title: '인터랙션',
@@ -18,6 +23,10 @@ export const RESUME = {
     ],
   },
   technology: {
+    header: {
+      id: 'technology',
+      title: '기술',
+    },
     inform:
       '기술을 습득하고 익히는 것에는 끝이 없다고 생각합니다. 꾸준하게 공부하고 상황에 맞는 필요한 기술을 공부하고 있습니다.',
     category: [
@@ -67,6 +76,10 @@ export const RESUME = {
     ],
   },
   experience: {
+    header: {
+      id: 'experience',
+      title: '경험',
+    },
     category: [
       {
         title: 'Pref',
@@ -334,4 +347,39 @@ export const RESUME = {
       },
     ],
   },
+  contact: {
+    header: {
+      id: 'contact',
+      title: '연락 및 운영',
+    },
+    category: [
+      {
+        title: '깃허브',
+        type: 'link',
+        icon: 'GitHub',
+        href: 'https://jikor1st.tistory.com',
+      },
+      {
+        title: '블로그',
+        type: 'link',
+        href: 'https://jikor1st.tistory.com',
+      },
+      { title: '이메일', type: 'email', href: 'jikor1st@naver.com' },
+    ] as ContactCategory[],
+  },
 };
+
+interface ContactCategory {
+  title: string;
+  type: string;
+  icon?: IconBaseProps['icon'];
+  href: string;
+}
+
+// interface Subject {
+//   title: string;
+//   items: string[];
+//   href: string;
+//   inform: string;
+//   skillTagList: string[];
+// }

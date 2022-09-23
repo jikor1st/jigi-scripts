@@ -1,24 +1,24 @@
 import React from 'react';
 
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
-import { SxProps, CSSProperties } from '@/lib/theme';
+import { CSSWithBreakpoints } from '@/lib/theme';
 
-const SBox = styled.div<{ sx: CSSProperties }>(({ theme, sx }) => {
+const SBox = styled.div<CSSWithBreakpoints>(({ theme, sx }) => {
   return {
-    ...sx,
+    ...theme.breakpoints.createStyle(sx),
   };
 });
 
-interface BoxProps extends SxProps {
+interface BoxProps extends CSSWithBreakpoints {
   children?: React.ReactNode;
   component?: React.ElementType;
 }
 
 export const Box = React.forwardRef<HTMLDivElement, BoxProps>(
-  ({ children, component = 'div', sx = {} }, RootRef) => {
+  ({ children, component = 'div', ...rest }, RootRef) => {
     return (
-      <SBox ref={RootRef} as={component} sx={sx}>
+      <SBox ref={RootRef} as={component} {...rest}>
         {children}
       </SBox>
     );

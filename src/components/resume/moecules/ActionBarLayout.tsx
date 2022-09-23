@@ -1,21 +1,29 @@
-import styled from '@emotion/styled';
-import { MouseEvent, useState } from 'react';
+import styled from 'styled-components';
 
 import { DarkMode, SelectBox } from '../atoms';
 
-const SContainer = styled.div(() => {
+import { useHtmlFontSize } from '@/lib/hooks';
+
+const SContainer = styled.div(({ theme }) => {
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: '18px',
+    gap: '16px',
+    [theme.breakpoints.down('lg')]: {
+      gap: '12px',
+    },
+    [theme.breakpoints.down('lg')]: {
+      gap: '8px',
+    },
   };
 });
 
 export function ActionBarLayout() {
-  const [htmlFontSize, setHtmlFontSize] = useState(16);
+  const { htmlFontSize, changeHtmlFontSize } = useHtmlFontSize();
   const handleChangeFontSize = (value: string | number) => {
-    setHtmlFontSize(parseInt(value as string));
+    changeHtmlFontSize(parseInt(value as string));
   };
+
   return (
     <SContainer>
       <SelectBox

@@ -1,26 +1,24 @@
 import { ReactNode } from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
-interface MarginBottom {
-  mb?: number;
-}
+import { CSSWithBreakpoints } from '@/lib/theme';
 
-const SListTitle = styled.h3<MarginBottom>(({ theme, mb }) => {
+const SListTitle = styled.h3<CSSWithBreakpoints>(({ theme, sx }) => {
   return {
     color: theme.palette.text.primary,
-    ...(mb && { marginBottom: theme.typography.pxToRem(mb) }),
     ...theme.typography.h5,
     [theme.breakpoints.down('lg')]: {
       ...theme.typography.subtitle1,
       fontWeight: theme.typography.fontWeight.Bold,
     },
+    ...theme.breakpoints.createStyle(sx),
   };
 });
 
-interface ListTitleProps extends MarginBottom {
+interface ListTitleProps extends CSSWithBreakpoints {
   children?: ReactNode;
 }
 
-export function ListTitle({ children, mb }: ListTitleProps) {
-  return <SListTitle mb={mb}>{children}</SListTitle>;
+export function ListTitle({ children, ...rest }: ListTitleProps) {
+  return <SListTitle {...rest}>{children}</SListTitle>;
 }

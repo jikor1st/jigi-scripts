@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 import {
   ListItem,
@@ -15,6 +15,13 @@ const SContainer = styled.div(({ theme }) => {
   return {
     '&:not(:last-child)': {
       marginBottom: theme.typography.pxToRem(80),
+    },
+    [theme.breakpoints.down('lg')]: {
+      // padding: '24px 0',
+      // borderBottom: `1px solid ${theme.palette.divider.secondary}`,
+      '&:not(:last-child)': {
+        marginBottom: theme.typography.pxToRem(70),
+      },
     },
   };
 });
@@ -56,11 +63,32 @@ export function SubjectList({ list }: SubjectListProps) {
           ({ title, href, inform, items, detailItems, skillTagList }) => (
             <SContainer key={`wrapper-${v4()}`}>
               {/* 제목 */}
-              <ListTitle mb={16}>{title}</ListTitle>
+              <ListTitle
+                sx={{
+                  marginBottom: {
+                    sm: 8,
+                    lg: 16,
+                  },
+                }}
+              >
+                {title}
+              </ListTitle>
               {/* 링크 */}
-              {href && <CopyLink href={href} mb={10} />}
+              {href && (
+                <CopyLink
+                  href={href}
+                  sx={{
+                    marginBottom: 10,
+                    marginTop: {
+                      sm: -2,
+                    },
+                  }}
+                />
+              )}
               {/* 정보 */}
-              {inform && <InfoText mb={28}>{inform}</InfoText>}
+              {inform && (
+                <InfoText sx={{ marginBottom: 28 }}>{inform}</InfoText>
+              )}
               {/* 아이템 */}
               {items && (
                 <SListWrap>
@@ -74,7 +102,9 @@ export function SubjectList({ list }: SubjectListProps) {
                 <SListWrap>
                   {detailItems.map(({ title, items }) => (
                     <SDetailItemsWrap key={`detail-items-${v4()}`}>
-                      <ListSubTitle mb={8}>{title}</ListSubTitle>
+                      <ListSubTitle sx={{ marginBottom: 8 }}>
+                        {title}
+                      </ListSubTitle>
                       <SListWrap>
                         {items.map(text => (
                           <ListItem key={`detail-list-${v4()}`}>
