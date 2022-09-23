@@ -34,7 +34,6 @@ const HangeulPathLine = ({ variant, percent }: HangeulPathLineProps) => {
         variant={variant}
         strokeWidth={16}
         stroke={theme.palette.secondary.light}
-        dropShadow={''}
         registerSVG={registerSVG}
       />
     </li>
