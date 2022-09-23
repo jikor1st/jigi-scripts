@@ -6,9 +6,10 @@ interface SeoProps {
   title?: string;
   siteName: string;
   description: string;
+  ogUrl?: string;
 }
 
-const Seo = ({ title, siteName, description }: SeoProps) => {
+const Seo = ({ title, siteName, description, ogUrl }: SeoProps) => {
   return (
     <Head>
       <title>{`${title ? title : 'jigi-scripts'} | ${siteName}`}</title>
@@ -16,10 +17,10 @@ const Seo = ({ title, siteName, description }: SeoProps) => {
       <meta name="description" content={description} />
       {/* <meta name="keywords" content='키워드 입력 보류 : 나열예정' /> */}
       <meta property="og:type" content="website" />
-      {/* <meta property="og:url" content={"og url 입력 보류(웹페이지 url)"} /> */}
+      {ogUrl && <meta property="og:url" content={ogUrl} />}
       {/* <meta property="og:image" content={'og image 입력 보류'} /> */}
-      {/* <meta property="og:image:width" content={'og image 가로 사이즈 입력 보류'} /> */}
-      {/* <meta property="og:image:height" content={'og image 세로 사이즈 입력 보류'} /> */}
+      <meta property="og:image:width" content={'1200'} />
+      <meta property="og:image:height" content={'630'} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:site_name" content={siteName} />

@@ -222,7 +222,6 @@ export function Headline({}: ResumeHead) {
           variant={hangeulArray[hangeulIndex]}
           registerSVG={registerSVG}
           stroke={theme.palette.primary.main}
-          dropShadow={theme.palette.shadow.hangeul}
         />
       </SHangeulWrapper>
     </SContainer>
