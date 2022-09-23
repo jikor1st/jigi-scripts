@@ -21,6 +21,7 @@ interface UseScrollTriggerProps extends UseScrollFunctions {
 interface UserScrollTriggerReturn {
   trigger: TriggerType;
   percent: number;
+  triggerStart: number;
   triggerTarget: Ref<HTMLElement>;
   registerTriggerTarget(el: HTMLElement): void;
 }
@@ -35,6 +36,7 @@ export function useScrollTrigger(
   }, []);
 
   const [trigger, setTrigger] = useState<TriggerType>('before');
+  const [triggerStart, setTriggerStart] = useState(0);
   const [percent, setPercent] = useState(0);
 
   // const debuggerTopRef = useRef(document.createElement('div'));
@@ -67,9 +69,8 @@ export function useScrollTrigger(
     } else if (triggerPercent > 100) {
       tempTrigger = 'after';
     }
-    // console.log('tempTrigger: ', tempTrigger);
     setTrigger(prev => (prev !== tempTrigger ? tempTrigger : prev));
-
+    setTriggerStart(prev => (prev !== triggerStart ? triggerStart : prev));
     setPercent(prev => (prev !== triggerPercent ? triggerPercent : prev));
     if (typeof onTrigger === 'function') {
       onTrigger({
@@ -92,6 +93,7 @@ export function useScrollTrigger(
 
   return {
     percent,
+    triggerStart,
     trigger,
     triggerTarget,
     registerTriggerTarget,

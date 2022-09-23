@@ -1,4 +1,4 @@
-import 'styled-components';
+import '@emotion/react';
 
 import type {
   ThemeBreakpoints,
@@ -7,8 +7,8 @@ import type {
   ThemeZIndex,
 } from './themeType';
 
-declare module 'styled-components' {
-  export interface DefaultTheme {
+declare module '@emotion/react' {
+  export interface Theme {
     breakpoints: ThemeBreakpoints;
     typography: ThemeTypography;
     palette: ThemePalette;

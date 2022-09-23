@@ -1,6 +1,6 @@
 import { createElement, memo } from 'react';
 
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { HANGEUL } from '@/lib/constants';
 import { HangeulSVGProps } from '@/lib/types';
 import { UsePathAnimationReturn } from '@/lib/hooks';

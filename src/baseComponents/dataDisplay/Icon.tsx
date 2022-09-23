@@ -1,5 +1,6 @@
 import { createElement, memo } from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from '@emotion/styled';
+import { useTheme } from '@emotion/react';
 
 import { ICONS } from '@/lib/constants';
 

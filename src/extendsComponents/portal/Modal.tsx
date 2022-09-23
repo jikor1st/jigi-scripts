@@ -1,5 +1,5 @@
 import { ReactNode, memo, forwardRef } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { PortalProvider } from '@/extendsComponents';
 
 const Dimmed = styled.div(({ theme }) => {

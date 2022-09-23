@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import { forwardRef } from 'react';
+import styled from '@emotion/styled';
 
 import { Icon } from '@/baseComponents';
 
@@ -50,9 +51,9 @@ const SSubTitle = styled.span(({ theme }) => {
   };
 });
 
-export function HeaderLayout() {
+export const HeaderLayout = forwardRef<HTMLHeadElement>((props, rootRef) => {
   return (
-    <SContainer>
+    <SContainer ref={rootRef}>
       <SWrapper>
         <SLogo>
           <Icon icon="Symbol" color="primary" size={'large'} />
@@ -62,4 +63,4 @@ export function HeaderLayout() {
       </SWrapper>
     </SContainer>
   );
-}
+});

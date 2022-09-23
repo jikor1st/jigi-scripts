@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { utility } from '@/lib/utils';
 import { Icon } from '@/baseComponents';
 

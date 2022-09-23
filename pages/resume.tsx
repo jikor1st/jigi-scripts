@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 import { Seo } from '@/extendsComponents';
 
@@ -11,8 +11,6 @@ import {
   Experience,
   ContactAndOperate,
 } from '@/components/resume/templates';
-
-import { TopButton } from '@/components/resume/atoms';
 
 const SContainer = styled.div(() => {
   return {};
@@ -33,7 +31,6 @@ export default function ResumePage() {
         <Experience />
         <ContactAndOperate />
       </SContainer>
-      <TopButton />
     </>
   );
 }

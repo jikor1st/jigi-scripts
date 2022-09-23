@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { HangeulPath, HangeulPathProps } from '../atoms';
 
 const SContainer = styled.div(() => {

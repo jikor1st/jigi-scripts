@@ -1,6 +1,6 @@
 import { Icon } from '@/baseComponents';
 
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const SContainer = styled.div(({ theme }) => {
   return {

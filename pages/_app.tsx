@@ -14,8 +14,8 @@ import { RecoilRoot } from 'recoil';
 import { REACT_QUERY_DEFAULT_OPTIONS } from '@/lib/constants';
 
 // emotion
-import styled, { ThemeProvider } from 'styled-components';
-
+import styled from '@emotion/styled';
+import { Global, ThemeProvider } from '@emotion/react';
 // theme
 import { useGlobalTheme } from '@/lib/theme';
 
@@ -24,7 +24,6 @@ import { GlobalCss, ResetCss } from '@/lib/styles';
 
 // types
 import type { PageLayoutProps } from '@/lib/types';
-import { useDarkMode } from '@/lib/hooks';
 
 interface AppPropsWithLayoutProps extends AppProps {
   Component: PageLayoutProps;
@@ -34,8 +33,12 @@ const queryClient = new QueryClient({
   defaultOptions: REACT_QUERY_DEFAULT_OPTIONS,
 });
 
-const VisibleSection = styled.div(() => {
-  return {};
+const VisibleSection = styled.div<{ isVisible: boolean }>(({ isVisible }) => {
+  return {
+    transition: 'opacity 0.14s ease-out',
+    visibility: isVisible ? 'visible' : 'hidden',
+    opacity: isVisible ? 1 : 0,
+  };
 });
 
 const AppPage = ({ Component, pageProps }: AppPropsWithLayoutProps) => {
@@ -49,8 +52,7 @@ const AppPage = ({ Component, pageProps }: AppPropsWithLayoutProps) => {
       <ThemeProvider theme={globalTheme}>
         <QueryClientProvider client={queryClient}>
           {/* <InitialApp {...initialAppProps} /> */}
-          <ResetCss />
-          <GlobalCss />
+          <Global styles={[ResetCss, GlobalCss]} />
           {getLayout(<Component {...pageProps} />)}
           {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </QueryClientProvider>
@@ -66,7 +68,9 @@ const AppPage = ({ Component, pageProps }: AppPropsWithLayoutProps) => {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
         />
       </Head>
-      <div>{prepareGlobalTheme && body}</div>
+      <VisibleSection isVisible={prepareGlobalTheme}>
+        {prepareGlobalTheme && body}
+      </VisibleSection>
     </>
   );
 };

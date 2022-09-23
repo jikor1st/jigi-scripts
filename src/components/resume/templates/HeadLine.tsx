@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from '@emotion/styled';
+import { useTheme } from '@emotion/react';
 import { useConditionEffect, usePathAnimation } from '@/lib/hooks';
 
 import {
@@ -227,7 +228,7 @@ export function Headline({}: ResumeHead) {
           variant={hangeulArray[hangeulIndex]}
           registerSVG={registerSVG}
           stroke={theme.palette.primary.main}
-          dropShadow={''}
+          dropShadow={theme.palette.shadow.hangeul}
         />
       </SHangeulWrapper>
     </SContainer>

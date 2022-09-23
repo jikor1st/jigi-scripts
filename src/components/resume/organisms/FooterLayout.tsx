@@ -1,16 +1,14 @@
-import styled from 'styled-components';
+import { forwardRef } from 'react';
+import styled from '@emotion/styled';
 import { FooterList } from '../moecules';
 
 import { RESUME } from '@/lib/constants';
-
-import { v4 } from 'uuid';
 
 const SContainer = styled.footer(({ theme }) => {
   return {
     background: theme.palette.background.canvas,
     padding: '0 20px',
     paddingTop: 44,
-    marginTop: 110,
   };
 });
 
@@ -82,10 +80,10 @@ const SFooterLink = styled.a(() => {
   };
 });
 
-export function FooterLayout() {
+export const FooterLayout = forwardRef<HTMLDivElement>((props, rootRef) => {
   const thisYear = new Date().getFullYear();
   return (
-    <SContainer>
+    <SContainer ref={rootRef}>
       <SPaper>
         <SPaperTitle>
           {thisYear}
@@ -123,4 +121,4 @@ export function FooterLayout() {
       </SPaper>
     </SContainer>
   );
-}
+});

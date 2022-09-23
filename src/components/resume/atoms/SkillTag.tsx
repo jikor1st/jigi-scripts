@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const SSkillTag = styled.h2(({ theme }) => {
   return {

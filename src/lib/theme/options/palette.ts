@@ -45,8 +45,7 @@ const lightPalette: ThemePalette = {
   },
   shadow: {
     modal: '-3px 0px 8px 0px rgba(29, 32, 35, 0.12)',
-    hangeul: '30px 10px 4px #4444dd',
-    // hangeul: '0 3px 9px #0f7af477',
+    hangeul: '0 3px 9px #0f7af477',
   },
   unstabled_scrollbar: {
     '&::-webkit-scrollbar': {
