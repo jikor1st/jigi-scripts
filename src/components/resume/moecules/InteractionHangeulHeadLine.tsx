@@ -30,3 +30,5 @@ export const InteractionHangeulHeadLine = memo(
     );
   },
 );
+
+InteractionHangeulHeadLine.displayName = 'InteractionHangeulHeadLine';

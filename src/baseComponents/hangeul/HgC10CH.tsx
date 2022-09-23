@@ -47,3 +47,5 @@ export const HgC10CH = forwardRef<SVGSVGElement, HangeulSVGProps>(
     );
   },
 );
+
+HgC10CH.displayName = 'HgC10CH';

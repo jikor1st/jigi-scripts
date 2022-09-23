@@ -45,3 +45,5 @@ export const HangeulPath = memo(
     );
   },
 );
+
+HangeulPath.displayName = 'HangeulPath';

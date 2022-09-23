@@ -99,7 +99,7 @@ export const FooterLayout = forwardRef<HTMLDivElement>((props, rootRef) => {
               .filter(([_, item]) => item?.header?.title && item?.header?.id)
               .map(([_, { header }]) => {
                 return (
-                  <SFooterLink href={`#${header.id}`}>
+                  <SFooterLink href={`#${header.id}`} key={header.id}>
                     {header.title}
                   </SFooterLink>
                 );
@@ -111,7 +111,7 @@ export const FooterLayout = forwardRef<HTMLDivElement>((props, rootRef) => {
               .filter(item => item.type === 'link')
               .map(({ title, href }) => {
                 return (
-                  <SFooterLink href={href} target={'_blank'}>
+                  <SFooterLink href={href} target={'_blank'} key={href}>
                     {title}
                   </SFooterLink>
                 );
@@ -122,3 +122,5 @@ export const FooterLayout = forwardRef<HTMLDivElement>((props, rootRef) => {
     </SContainer>
   );
 });
+
+FooterLayout.displayName = 'FooterLayout';

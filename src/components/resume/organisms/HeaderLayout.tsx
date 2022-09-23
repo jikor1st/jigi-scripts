@@ -64,3 +64,5 @@ export const HeaderLayout = forwardRef<HTMLHeadElement>((props, rootRef) => {
     </SContainer>
   );
 });
+
+HeaderLayout.displayName = 'HeaderLayout';

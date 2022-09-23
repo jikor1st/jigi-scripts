@@ -40,3 +40,5 @@ export const HgC06B = forwardRef<SVGSVGElement, HangeulSVGProps>(
     );
   },
 );
+
+HgC06B.displayName = 'HgC06B';

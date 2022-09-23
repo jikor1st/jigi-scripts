@@ -38,3 +38,5 @@ export const HgC11K = forwardRef<SVGSVGElement, HangeulSVGProps>(
     );
   },
 );
+
+HgC11K.displayName = 'HgC11K';

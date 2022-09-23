@@ -56,3 +56,5 @@ export const HgC13P = forwardRef<SVGSVGElement, HangeulSVGProps>(
     );
   },
 );
+
+HgC13P.displayName = 'HgC13P';

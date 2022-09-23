@@ -64,3 +64,5 @@ export const TopButton = memo(({ isBottom, isVisible }: TopButtonProps) => {
     </STopButton>
   );
 });
+
+TopButton.displayName = 'TopButton';
