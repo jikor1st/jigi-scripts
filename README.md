@@ -1,5 +1,6 @@
-### jigi-scripts web sites
+### jigi-scripts
 
-안녕하세요 지기역입니다.
+지기역의 웹 포트폴리오 사이트입니다.
 
-...writing
+#### 이력서페이지
+https://jigi-scripts.vercel.app/resume
