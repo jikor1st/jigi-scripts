@@ -17,10 +17,18 @@ const SContainer = styled.div(({ theme }) => {
       marginBottom: theme.typography.pxToRem(80),
     },
     [theme.breakpoints.down('lg')]: {
-      // padding: '24px 0',
-      // borderBottom: `1px solid ${theme.palette.divider.secondary}`,
+      padding: `${theme.typography.pxToRem(20)} ${theme.typography.pxToRem(
+        20,
+      )}`,
+      background: theme.palette.background.canvas,
+      borderRadius: theme.typography.pxToRem(16),
       '&:not(:last-child)': {
-        marginBottom: theme.typography.pxToRem(70),
+        marginBottom: theme.typography.pxToRem(40),
+      },
+    },
+    [theme.breakpoints.down('sm')]: {
+      '&:not(:last-child)': {
+        marginBottom: theme.typography.pxToRem(30),
       },
     },
   };
@@ -40,7 +48,7 @@ const SSkillTagListWrap = styled.ul(({ theme }) => {
     display: 'flex',
     flexWrap: 'wrap',
     gap: '6px 8px',
-    marginTop: theme.typography.pxToRem(24),
+    marginTop: theme.typography.pxToRem(20),
   };
 });
 

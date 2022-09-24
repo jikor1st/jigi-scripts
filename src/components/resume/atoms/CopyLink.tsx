@@ -1,9 +1,12 @@
-import { useRef } from 'react';
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { utility } from '@/lib/utils';
 import { Icon } from '@/baseComponents';
 
 import { CSSWithBreakpoints } from '@/lib/theme';
+
+import { SuccessDialog } from './SuccessDialog';
+import { motion } from 'framer-motion';
 
 const SContainer = styled.div<CSSWithBreakpoints>(({ theme, sx }) => {
   return {
@@ -39,6 +42,11 @@ const SDisabledLink = styled.p(({ theme }) => {
     color: theme.palette.text.light,
   };
 });
+const SCopyButtonWrapper = styled.div(() => {
+  return {
+    position: 'relative',
+  };
+});
 const SCopyButton = styled.button(({ theme }) => {
   return {
     padding: 2,
@@ -60,11 +68,21 @@ interface CopyLinkProps extends CSSWithBreakpoints {
 }
 
 export function CopyLink({ href, disabled = false, ...rest }: CopyLinkProps) {
+  const [copyState, setCopyState] = useState(false);
+
   const handleCopyLinkToClipboard = () => {
     try {
       utility.clipboard.copy(href);
-    } catch (e) {}
+      setCopyState(true);
+    } catch (e) {
+      alert('복사를 실패했습니다.');
+    } finally {
+      setTimeout(() => {
+        setCopyState(false);
+      }, 600);
+    }
   };
+
   return (
     <SContainer {...rest}>
       {!disabled ? (
@@ -74,9 +92,25 @@ export function CopyLink({ href, disabled = false, ...rest }: CopyLinkProps) {
       ) : (
         <SDisabledLink>{href}</SDisabledLink>
       )}
-      <SCopyButton onClick={handleCopyLinkToClipboard}>
-        <Icon icon="Copy" color="secondary" />
-      </SCopyButton>
+      <SCopyButtonWrapper>
+        <SCopyButton onClick={handleCopyLinkToClipboard}>
+          <Icon icon="Copy" color="secondary" />
+        </SCopyButton>
+        <motion.div
+          animate={{
+            opacity: copyState ? 1 : 0,
+            transform: copyState
+              ? 'translate(-50%, -100%)'
+              : 'translate(-50%, -80%)',
+            position: 'absolute',
+            left: '50%',
+            top: -10,
+            pointerEvents: 'none',
+          }}
+        >
+          <SuccessDialog text="복사 완료" />
+        </motion.div>
+      </SCopyButtonWrapper>
     </SContainer>
   );
 }

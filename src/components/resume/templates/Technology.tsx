@@ -9,7 +9,18 @@ export function Technology() {
   return (
     <SectionWrapper id={RESUME.technology.header.id}>
       <TupleContainer
-        left={<SectionTitle>{RESUME.technology.header.title}</SectionTitle>}
+        left={
+          <SectionTitle
+            sx={{
+              marginBottom: {
+                sm: 28,
+                lg: 80,
+              },
+            }}
+          >
+            {RESUME.technology.header.title}
+          </SectionTitle>
+        }
         right={{
           inform: RESUME.technology.inform,
           contents: <SubjectList list={RESUME.technology.category} />,

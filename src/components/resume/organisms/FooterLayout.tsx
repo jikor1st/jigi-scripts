@@ -22,7 +22,6 @@ const SPaper = styled.div(({ theme }) => {
     maxWidth: theme.breakpoints.values.xxl,
     margin: '0 auto',
     padding: `${theme.typography.pxToRem(40)} ${theme.typography.pxToRem(60)}`,
-    boxShadow: theme.palette.shadow.modal,
     border: `1px solid ${theme.palette.divider.secondary}`,
     borderBottom: 0,
     borderRadius: '10px 10px 0 0',

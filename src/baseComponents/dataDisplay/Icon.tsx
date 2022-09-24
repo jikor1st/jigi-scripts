@@ -10,10 +10,11 @@ const ICON_SIZE = {
   small: 24,
 };
 
+type ColorThemeKey = 'primary' | 'secondary' | 'error' | 'success';
 export interface IconBaseProps {
   icon: keyof typeof ICONS;
   variant?: 'default' | 'filled' | 'outlined';
-  color?: 'primary' | 'secondary' | 'error' | 'success';
+  color?: ColorThemeKey | string;
   size?: 'large' | 'medium' | 'small' | number;
 }
 
@@ -42,18 +43,41 @@ export const Icon: React.FC<IconBaseProps> = memo(
     let bgFill = 'none';
     let bgOutline = 'none';
 
-    switch (variant) {
-      case 'filled':
-        iconFill = theme.palette[color].contrast;
-        bgFill = theme.palette[color].main;
-        break;
-      case 'outlined':
-        iconFill = theme.palette[color].main;
-        bgOutline = theme.palette[color].main;
-        break;
-      default:
-        iconFill = theme.palette[color].main;
-        break;
+    const colorThemeKey: ColorThemeKey[] = [
+      'primary',
+      'secondary',
+      'error',
+      'success',
+    ];
+
+    if (colorThemeKey.some(item => item === color)) {
+      switch (variant) {
+        case 'filled':
+          iconFill = theme.palette[color as ColorThemeKey].contrast;
+          bgFill = theme.palette[color as ColorThemeKey].main;
+          break;
+        case 'outlined':
+          iconFill = theme.palette[color as ColorThemeKey].main;
+          bgOutline = theme.palette[color as ColorThemeKey].main;
+          break;
+        default:
+          iconFill = theme.palette[color as ColorThemeKey].main;
+          break;
+      }
+    } else {
+      switch (variant) {
+        case 'filled':
+          iconFill = color;
+          bgFill = color;
+          break;
+        case 'outlined':
+          iconFill = color;
+          bgOutline = color;
+          break;
+        default:
+          iconFill = color;
+          break;
+      }
     }
 
     const iconSize = typeof size !== 'number' ? ICON_SIZE[size] : size;

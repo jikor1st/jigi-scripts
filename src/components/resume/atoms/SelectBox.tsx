@@ -3,49 +3,54 @@ import styled from '@emotion/styled';
 
 import { Icon } from '@/baseComponents';
 
-const Scontainer = styled.div<{ isPrepare: boolean }>(
-  ({ theme, isPrepare }) => {
-    return {
-      position: 'relative',
-      visibility: isPrepare ? 'visible' : 'hidden',
-      opacity: isPrepare ? 1 : 0,
-      transition: 'opacity 0.13s ease',
-    };
-  },
-);
+const Scontainer = styled.div<{ isPrepare: boolean }>(({ isPrepare }) => {
+  return {
+    position: 'relative',
+    visibility: isPrepare ? 'visible' : 'hidden',
+    opacity: isPrepare ? 1 : 0,
+    transition: 'opacity 0.13s ease',
+  };
+});
 
 const SSelectBox = styled.div<{ isOpen: boolean }>(({ theme, isOpen }) => {
-  const backgroundColor = isOpen
-    ? theme.palette.primary.light
-    : theme.palette.background.canvas;
   const borderColor = isOpen
     ? theme.palette.primary.main
     : theme.palette.divider.secondary;
   const color = isOpen
     ? theme.palette.primary.main
     : theme.palette.text.primary;
-  const transition =
-    'background 0.08s linear, color 0.08s linear, border 0.08s linear';
   return {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
     padding: '4px 6px 4px',
     borderRadius: 24,
-    background: backgroundColor,
+    overflow: 'hidden',
     border: `1px solid ${borderColor}`,
     cursor: 'pointer',
-    transition: transition,
+    transition: 'color 0.08s linear, border 0.08s linear',
     '& .resume-selected-value': {
       color: color,
-      transition: transition,
+      transition: 'color 0.08s linear, border 0.08s linear',
     },
-    boxShadow: theme.palette.shadow.modal,
+    '&:before': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      display: 'block',
+      width: '100%',
+      height: '100%',
+      backgroundColor: theme.palette.actions.hover,
+      transition: 'opacity 0.08s linear',
+      opacity: isOpen ? 0.34 : 0,
+    },
   };
 });
 
 const SSelected = styled.div(({ theme }) => {
   return {
+    position: 'relative',
     padding: `0 ${theme.typography.pxToRem(8)}`,
     textAlign: 'center',
     ...theme.typography.body1,
@@ -61,7 +66,8 @@ const SSelectIcon = styled.span<{ isOpen: boolean }>(({ isOpen }) => {
   };
 });
 const SOptionsBox = styled.div<{ selectBoxHeight: number }>(
-  ({ selectBoxHeight, theme }) => {
+  ({ theme, selectBoxHeight }) => {
+    const isDarkMode = theme.palette.mode === 'dark';
     return {
       position: 'absolute',
       left: 0,
@@ -70,9 +76,18 @@ const SOptionsBox = styled.div<{ selectBoxHeight: number }>(
       padding: '6px 0',
       border: `1px solid ${theme.palette.divider.secondary}`,
       borderRadius: 18,
-      background: theme.palette.background.paper,
       overflow: 'hidden',
-      boxShadow: theme.palette.shadow.modal,
+      '&:before': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        content: '""',
+        display: 'block',
+        width: '100%',
+        height: '100%',
+        background: theme.palette.background.paper,
+        opacity: isDarkMode ? 0.75 : 1,
+      },
     };
   },
 );
@@ -83,7 +98,7 @@ const SOption = styled.button<{ isActive: boolean }>(({ theme, isActive }) => {
   if (!isDarkMode) {
     color = isActive ? theme.palette.primary.main : theme.palette.text.primary;
   } else {
-    color = isActive ? theme.palette.primary.dark : theme.palette.text.primary;
+    color = isActive ? theme.palette.primary.main : theme.palette.text.primary;
   }
 
   return {
@@ -110,11 +125,9 @@ const SOption = styled.button<{ isActive: boolean }>(({ theme, isActive }) => {
         margin: '0 4px',
         width: 'calc(100% - 8px)',
         height: '100%',
-        background: !isDarkMode
-          ? theme.palette.primary.light
-          : theme.palette.text.primary,
+        background: theme.palette.primary.light,
         borderRadius: 18,
-        opacity: isDarkMode ? 0.85 : 1,
+        opacity: isDarkMode ? 0.1 : 1,
       },
     }),
   };
@@ -123,10 +136,6 @@ const SOptionValue = styled.p(({ theme }) => {
   return {
     position: 'relative',
     padding: `0 ${theme.typography.pxToRem(8)}`,
-    color: 'inherit',
-    fontSize: 'inherit',
-    fontWeight: 'inherit',
-    lineHeight: 'inherit',
   };
 });
 

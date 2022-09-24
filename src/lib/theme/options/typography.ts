@@ -10,7 +10,7 @@ const fontWeightValues = {
   Thin: 100,
 };
 
-const lineHeightMultiple = 1.5;
+const lineHeightMultiple = 1.75;
 
 function pxToRem(px: number, htmlFontSize: number): `${number}rem` {
   return `${parseFloat((px / htmlFontSize).toFixed(3))}rem`;
@@ -73,13 +73,13 @@ export const typographyOptions = {
     fontFamily: 'Pretendard',
     fontSize: pxToRem(18, initialHtmlFontSize),
     lineHeight: pxToRem(18 * lineHeightMultiple, initialHtmlFontSize),
-    fontWeight: fontWeightStrToNum('Regular'),
+    fontWeight: fontWeightStrToNum('Medium'),
   },
   body1: {
     fontFamily: 'Pretendard',
     fontSize: pxToRem(16, initialHtmlFontSize),
     lineHeight: pxToRem(16 * lineHeightMultiple, initialHtmlFontSize),
-    fontWeight: fontWeightStrToNum('Regular'),
+    fontWeight: fontWeightStrToNum('Medium'),
   },
   body2: {
     fontFamily: 'Pretendard',
