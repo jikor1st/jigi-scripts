@@ -19,14 +19,50 @@ export default class DocumentPage extends Document {
             name="google-site-verification"
             content="zFm4zq7bfKIFVMRavwKLUq6R6Ki2Mp5agFGguBWY-qk"
           />
+
+          <title>{'지기역 | 이력서'}</title>
+          {/* <link rel="canonical" href="중복 url 입력 : 보류" /> */}
+          <meta
+            name="description"
+            content={'프론트엔드 개발자 지기역 이력서'}
+          />
+          {/* <meta name="keywords" content='키워드 입력 보류 : 나열예정' /> */}
+          <meta property="og:title" content={'지기역 | 이력서'} />
+          <meta
+            property="og:description"
+            content={'프론트엔드 개발자 지기역 이력서'}
+          />
+
+          {/* <!-- Facebook Meta Tags --> */}
+          <meta property="og:url" content={'https://jigi-scripts.vercel.app'} />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content={'지기역 | 이력서'} />
+          <meta
+            property="og:description"
+            content={'프론트엔드 개발자 지기역 이력서'}
+          />
+          <meta
+            property="og:image"
+            content={'https://jikor1st.github.io/assets/og/resume-og.png'}
+          />
+
+          {/* <!-- Twitter Meta Tags --> */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta property="twitter:domain" content="jigi-scripts.vercel.app" />
+          <meta
+            property="twitter:url"
+            content={'https://jigi-scripts.vercel.app'}
+          />
+          <meta name="twitter:title" content={'지기역 | 이력서'} />
+          <meta
+            name="twitter:description"
+            content={'프론트엔드 개발자 지기역 이력서'}
+          />
+          <meta
+            name="twitter:image"
+            content={'https://jikor1st.github.io/assets/og/resume-og.png'}
+          />
         </Head>
-        <Seo
-          title="지기역"
-          siteName="이력서"
-          description="프론트엔드 개발자 지기역 이력서"
-          ogImage="https://jikor1st.github.io/assets/og/resume-og.png"
-          ogUrl="https://jigi-scripts.vercel.app"
-        />
         <body>
           <div id="root">
             <Main />
