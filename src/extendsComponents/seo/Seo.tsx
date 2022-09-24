@@ -14,7 +14,7 @@ const Seo = ({ title, siteName, description, ogImage, ogUrl }: SeoProps) => {
   const webTitle = title ? title : 'jigi-scripts';
   const webHeader = `${webTitle} | ${siteName}`;
   return (
-    <Head>
+    <>
       <title>{webHeader}</title>
       {/* <link rel="canonical" href="중복 url 입력 : 보류" /> */}
       <meta name="description" content={description} />
@@ -36,7 +36,7 @@ const Seo = ({ title, siteName, description, ogImage, ogUrl }: SeoProps) => {
       <meta name="twitter:title" content={webHeader} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
-    </Head>
+    </>
   );
 };
 
