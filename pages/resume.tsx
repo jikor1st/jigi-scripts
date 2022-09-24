@@ -23,7 +23,8 @@ export default function ResumePage() {
         title="지기역"
         siteName="이력서"
         description="프론트엔드 개발자 지기역 이력서"
-        ogUrl="https://jikor1st.github.io/assets/og/resume-og.png"
+        ogUrl="https%3A%2F%2Fjikor1st.github.io%2Fassets%2Fog%2Fresume-og.png"
+        // ogUrl="https://jikor1st.github.io/assets/og/resume-og.png"
       />
       <SContainer>
         <Headline />

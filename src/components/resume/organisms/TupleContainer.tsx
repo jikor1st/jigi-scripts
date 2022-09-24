@@ -23,7 +23,7 @@ const SLeft = styled.div(({ theme }) => {
     flex: 3,
   };
 });
-const SRight = styled.div(({ theme }) => {
+const SRight = styled.div(() => {
   return {
     flex: 9,
   };
@@ -41,10 +41,9 @@ interface TupleContainerProps {
 }
 
 export function TupleContainer({ left, right }: TupleContainerProps) {
-  return (
-    <SContainer>
-      <SLeft>{left}</SLeft>
-      <SRight>
+  const infoItem = () => {
+    return (
+      <>
         {right.inform && (
           <InfoText
             sx={{
@@ -61,6 +60,15 @@ export function TupleContainer({ left, right }: TupleContainerProps) {
             {right.inform}
           </InfoText>
         )}
+      </>
+    );
+  };
+
+  return (
+    <SContainer>
+      <SLeft>{left}</SLeft>
+      <SRight>
+        {infoItem()}
         {right.contents && <SRightContents>{right.contents}</SRightContents>}
       </SRight>
     </SContainer>

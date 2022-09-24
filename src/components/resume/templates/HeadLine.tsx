@@ -196,7 +196,7 @@ export function Headline({}: ResumeHead) {
     <SContainer>
       <SHeadLineWrapper>
         <SHeadLineTitle>
-          방문해주셔서
+          방문해 주셔서
           <SSmBr /> 감사합니다!
           <br />
           프론트엔드 <SSmBr />
@@ -205,13 +205,14 @@ export function Headline({}: ResumeHead) {
           <SHighlight> 지기역</SHighlight>입니다.
         </SHeadLineTitle>
         <SHeadLineSubTitle>
-          ㄱ부터 ㅎ까지
-          <SSmBr /> 저의 이름처럼
+          저의 이름처럼
+          <SSmBr /> ㄱ부터 ㅎ까지
           <SSmBr /> 단계적으로
           <SSmBr /> 나아갑니다.
         </SHeadLineSubTitle>
         <SControllerWrapper>
           <InteractionHangeulController
+            current={hangeulArray[hangeulIndex]}
             onClickPrev={hangeulIndexPrev}
             onClickNext={hangeulIndexNext}
           />

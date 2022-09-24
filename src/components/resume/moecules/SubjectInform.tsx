@@ -8,7 +8,7 @@ const SContainer = styled.div(({ theme }) => {
       left: 0,
     },
     [theme.breakpoints.down('lg')]: {
-      marginBottom: theme.typography.pxToRem(24),
+      marginBottom: theme.typography.pxToRem(20),
     },
   };
 });
@@ -16,18 +16,17 @@ const STitle = styled.h4(({ theme }) => {
   return {
     color: theme.palette.text.primary,
     ...theme.typography.h4,
+    fontWeight: theme.typography.fontWeight.Bold,
     [theme.breakpoints.down('lg')]: {
       ...theme.typography.h5,
-    },
-    [theme.breakpoints.down('sm')]: {
-      ...theme.typography.h6,
+      fontWeight: theme.typography.fontWeight.Bold,
     },
   };
 });
 const SSubTitle = styled.h5(({ theme }) => {
   return {
     color: theme.palette.text.primary,
-    marginTop: theme.typography.pxToRem(24),
+    marginTop: theme.typography.pxToRem(18),
     ...theme.typography.subtitle1,
     [theme.breakpoints.down('lg')]: {
       marginTop: theme.typography.pxToRem(12),

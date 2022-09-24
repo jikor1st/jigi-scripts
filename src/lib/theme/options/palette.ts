@@ -20,14 +20,14 @@ const lightPalette: ThemePalette = {
     contrast: '#FFF3F7',
   },
   success: {
-    main: '#02D5AA',
+    main: '#00C5C5',
     dark: '#0D4439',
     light: '#AFFFDF',
     contrast: '#FFFFFF',
   },
   background: {
     paper: 'rgba(255,255,255,0.72)',
-    canvas: '#F2F2F6',
+    canvas: '#f0f0f552',
   },
   text: {
     primary: '#222222',
@@ -82,13 +82,13 @@ const darkPalette: ThemePalette = {
     contrast: '#FFF3F7',
   },
   success: {
-    main: '#02D5AA',
+    main: '#00C5C5',
     dark: '#0D4439',
     light: '#AFFFDF',
     contrast: '#FFFFFF',
   },
   background: {
-    paper: '#1e1e1e',
+    paper: 'rgba(19,18,18,1)',
     canvas: '#242424',
   },
   text: {

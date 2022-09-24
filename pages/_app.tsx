@@ -1,12 +1,11 @@
 import type { AppProps, AppContext } from 'next/app';
 import Head from 'next/head';
 import { PageLayout } from '@/containers';
-
-import { useEffect, useState } from 'react';
+import '../public/assets/fonts/fonts.css';
 
 // react Query
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+// import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { RecoilRoot } from 'recoil';
 

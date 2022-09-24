@@ -2,13 +2,22 @@
 
 module.exports = {
   reactStrictMode: true,
-  // swcMinify: true,
+  swcMinify: true,
   webpack: config => {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
     return config;
+  },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/resume',
+        permanent: true,
+      },
+    ];
   },
   images: {
     domains: ['jikor1st.github.io'],

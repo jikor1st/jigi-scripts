@@ -5,9 +5,9 @@ import styled from '@emotion/styled';
 const SContainer = styled.div(({ theme }) => {
   return {
     display: 'inline-block',
-    border: `1px solid ${theme.palette.divider.secondary}`,
     borderRadius: theme.typography.pxToRem(30),
-    boxShadow: theme.palette.shadow.modal,
+    background: theme.palette.background.canvas,
+    // boxShadow: theme.palette.shadow.modal,
     [theme.breakpoints.down('sm')]: {
       transformOrigin: 'left',
       transform: 'scale(0.84)',
@@ -19,8 +19,14 @@ const SWrapper = styled.div(({ theme }) => {
     display: 'flex',
     justifyContents: 'center',
     alignItems: 'center',
-    gap: theme.typography.pxToRem(16),
+    gap: theme.typography.pxToRem(8),
     padding: `${theme.typography.pxToRem(6)} ${theme.typography.pxToRem(10)}`,
+  };
+});
+const SCurrent = styled.p(({ theme }) => {
+  return {
+    color: theme.palette.text.primary,
+    ...theme.typography.body1,
   };
 });
 const SButton = styled.button(({ theme }) => {
@@ -32,7 +38,7 @@ const SButton = styled.button(({ theme }) => {
     border: '1px solid transparent',
     width: theme.typography.pxToRem(28),
     height: theme.typography.pxToRem(28),
-    padding: 6,
+    padding: 2,
     boxSizing: 'content-box',
     '&:hover': {
       background: theme.palette.actions.hover,
@@ -44,11 +50,13 @@ const SButton = styled.button(({ theme }) => {
 });
 
 interface InteractionHangeulControllerProps {
+  current: string | number;
   onClickPrev: () => void;
   onClickNext: () => void;
 }
 
 export function InteractionHangeulController({
+  current,
   onClickPrev,
   onClickNext,
 }: InteractionHangeulControllerProps) {
@@ -58,6 +66,7 @@ export function InteractionHangeulController({
         <SButton onClick={onClickPrev}>
           <Icon icon="AudioPrev" size={28} />
         </SButton>
+        <SCurrent>{current}</SCurrent>
         <SButton onClick={onClickNext}>
           <Icon icon="AudioNext" size={28} />
         </SButton>

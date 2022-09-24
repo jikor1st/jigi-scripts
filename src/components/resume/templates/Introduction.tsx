@@ -7,11 +7,7 @@ import { v4 } from 'uuid';
 
 import { RESUME, HANGEUL } from '@/lib/constants';
 
-import {
-  usePathAnimation,
-  useIntersectionObserver,
-  useScrollTrigger,
-} from '@/lib/hooks';
+import { usePathAnimation, useScrollTrigger, useMediaQuery } from '@/lib/hooks';
 
 interface HangeulPathLineProps {
   variant: keyof typeof HANGEUL;
@@ -28,21 +24,20 @@ const HangeulPathLine = ({ variant, percent }: HangeulPathLineProps) => {
   useEffect(() => {
     pathUtils.line({ percent: percent });
   }, [percent]);
+
   return (
-    <li>
-      <HangeulPath
-        variant={variant}
-        strokeWidth={16}
-        stroke={theme.palette.secondary.light}
-        registerSVG={registerSVG}
-      />
-    </li>
+    <HangeulPath
+      variant={variant}
+      strokeWidth={16}
+      stroke={theme.palette.secondary.light}
+      registerSVG={registerSVG}
+    />
   );
 };
 
 const SIntroduceContainer = styled.div(() => {
   return {
-    maxWidth: 600,
+    maxWidth: 560,
   };
 });
 
@@ -50,8 +45,8 @@ const SInteractionHangeulContainer = styled.ul(({ theme }) => {
   return {
     display: 'grid',
     gridTemplateColumns: 'repeat(5, 1fr)',
-    alignItems: 'start',
-    maxWidth: 600,
+    alignItems: 'center',
+    gridAutoRows: 'minmax(min-content, max-content)',
     gap: 44,
     [theme.breakpoints.down('sm')]: {
       marginTop: 30,
@@ -62,6 +57,9 @@ const SInteractionHangeulContainer = styled.ul(({ theme }) => {
 // 자기소개
 export function Introduction() {
   const theme = useTheme();
+  const isLgQuery = useMediaQuery(
+    theme.breakpoints.up('lg').split('@media')[1],
+  );
 
   const [hangeulArray] = useState<HangeulArrayType>(
     Object.keys(HANGEUL) as HangeulArrayType,
@@ -78,13 +76,13 @@ export function Introduction() {
       sx={{
         display: {
           sm: 'block',
-          lg: 'flex',
+          lg: 'grid',
         },
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gridAutoRows: 'minmax(min-content, max-content)',
+        alignItems: 'center',
         gap: 160,
-        marginTop: {
-          sm: `-${theme.typography.h3.lineHeight}`,
-          lg: `-${theme.typography.h2.lineHeight}`,
-        },
+        marginTop: `-${theme.typography.h2.lineHeight}`,
       }}
     >
       <SIntroduceContainer>
@@ -112,19 +110,21 @@ export function Introduction() {
           })}
         </div>
       </SIntroduceContainer>
-      <SInteractionHangeulContainer>
-        {hangeulArray.map((variant, index) => {
-          const itemPercent =
-            trigger === 'current' ? percent : trigger === 'before' ? 0 : 100;
-          return (
-            <HangeulPathLine
-              variant={variant}
-              percent={itemPercent}
-              key={variant}
-            />
-          );
-        })}
-      </SInteractionHangeulContainer>
+      {isLgQuery && (
+        <SInteractionHangeulContainer>
+          {hangeulArray.map((variant, index) => {
+            const itemPercent =
+              trigger === 'current' ? percent : trigger === 'before' ? 0 : 100;
+            return (
+              <HangeulPathLine
+                variant={variant}
+                percent={itemPercent}
+                key={variant}
+              />
+            );
+          })}
+        </SInteractionHangeulContainer>
+      )}
     </SectionWrapper>
   );
 }
