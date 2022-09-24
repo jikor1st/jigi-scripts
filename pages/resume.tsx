@@ -18,7 +18,7 @@ const SContainer = styled.div(() => {
 
 export default function ResumePage() {
   return (
-    <>
+    <div>
       <Seo
         title="지기역"
         siteName="이력서"
@@ -33,7 +33,7 @@ export default function ResumePage() {
         <Experience />
         <ContactAndOperate />
       </SContainer>
-    </>
+    </div>
   );
 }
 
