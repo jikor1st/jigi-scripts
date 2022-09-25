@@ -1,11 +1,4 @@
-import {
-  MutableRefObject,
-  RefObject,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-} from 'react';
+import { MutableRefObject, useEffect, useRef } from 'react';
 
 interface Transition {
   property: string;
@@ -331,7 +324,7 @@ export function usePathAnimation({
     }, duration);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     prepareSVG(svgElRef.current);
     return () => {
       timerReset(pathTransitionTimerRef.current);

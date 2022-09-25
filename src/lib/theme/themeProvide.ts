@@ -28,12 +28,16 @@ export function useGlobalTheme() {
   const [prepareGlobalTheme, setPrepareGlobalTheme] = useState(false);
 
   const { isDarkMode } = useDarkMode();
+  const [globalTheme, setGlobalTheme] = useState(lightGlobalTheme);
 
   useEffect(() => {
-    setPrepareGlobalTheme(true);
-  }, []);
+    const theme = !isDarkMode ? lightGlobalTheme : darkGlobalTheme;
+    setGlobalTheme(theme);
+    setPrepareGlobalTheme(prev => (prev !== true ? true : prev));
+  }, [isDarkMode]);
   return {
+    isDarkMode,
     prepareGlobalTheme,
-    globalTheme: !isDarkMode ? lightGlobalTheme : darkGlobalTheme,
+    globalTheme,
   };
 }

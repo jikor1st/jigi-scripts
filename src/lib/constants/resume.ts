@@ -365,7 +365,7 @@ export const RESUME = {
   contact: {
     header: {
       id: 'contact',
-      title: '연락 및 운영',
+      title: '연락/운영',
     },
     category: [
       {

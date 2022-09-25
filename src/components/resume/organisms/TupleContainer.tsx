@@ -14,6 +14,14 @@ const SContainer = styled.div(({ theme }) => {
     },
     [theme.breakpoints.down('lg')]: {
       flexDirection: 'column',
+      '&:not(:last-child)': {
+        marginBottom: theme.typography.pxToRem(150),
+      },
+    },
+    [theme.breakpoints.down('sm')]: {
+      '&:not(:last-child)': {
+        marginBottom: theme.typography.pxToRem(100),
+      },
     },
   };
 });

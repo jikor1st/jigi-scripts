@@ -108,7 +108,7 @@ export function CopyLink({ href, disabled = false, ...rest }: CopyLinkProps) {
             pointerEvents: 'none',
           }}
         >
-          <SuccessDialog text="복사 완료" />
+          {copyState && <SuccessDialog text="복사 완료" />}
         </motion.div>
       </SCopyButtonWrapper>
     </SContainer>
