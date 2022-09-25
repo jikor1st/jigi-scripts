@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import type { AppProps, AppContext } from 'next/app';
-import dynamic from 'next/dynamic';
+import router from 'next/router';
 
 import Head from 'next/head';
 import { PageLayout } from '@/containers';
@@ -16,12 +17,6 @@ import { REACT_QUERY_DEFAULT_OPTIONS } from '@/lib/constants';
 // emotion
 import styled from '@emotion/styled';
 import { Global, ThemeProvider } from '@emotion/react';
-// const ThemeProvider = dynamic(
-//   async () => {
-//     return import('@emotion/react').then(mode => mode.ThemeProvider);
-//   },
-//   { ssr: true },
-// );
 
 // theme
 import { useGlobalTheme } from '@/lib/theme';
@@ -31,6 +26,7 @@ import { GlobalCss, ResetCss } from '@/lib/styles';
 
 // types
 import type { PageLayoutProps } from '@/lib/types';
+import { changeRouteGtag } from '@/lib/utils';
 
 interface AppPropsWithLayoutProps extends AppProps {
   Component: PageLayoutProps;
@@ -53,6 +49,17 @@ const AppPage = ({ Component, pageProps }: AppPropsWithLayoutProps) => {
     Component.getLayout ?? (page => <PageLayout>{page}</PageLayout>);
 
   const { prepareGlobalTheme, globalTheme } = useGlobalTheme();
+
+  const handleRouteChange = (url: string) => {
+    changeRouteGtag(url);
+  };
+
+  useEffect(() => {
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, []);
 
   return (
     <>
