@@ -68,10 +68,6 @@ const SFooterListContainer = styled.div(({ theme }) => {
   };
 });
 
-const SFooterNavigator = styled.a(() => {
-  return {};
-});
-
 const SFooterLink = styled.a(() => {
   return {
     color: 'inherit',

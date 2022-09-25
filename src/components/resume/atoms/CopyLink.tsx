@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import { utility } from '@/lib/utils';
 import { Icon } from '@/baseComponents';

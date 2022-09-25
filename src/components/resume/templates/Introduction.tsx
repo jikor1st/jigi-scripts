@@ -7,7 +7,12 @@ import { v4 } from 'uuid';
 
 import { RESUME, HANGEUL } from '@/lib/constants';
 
-import { usePathAnimation, useScrollTrigger, useMediaQuery } from '@/lib/hooks';
+import {
+  usePathAnimation,
+  useScrollTrigger,
+  useMediaQuery,
+  useSsr,
+} from '@/lib/hooks';
 
 interface HangeulPathLineProps {
   variant: keyof typeof HANGEUL;
@@ -48,6 +53,12 @@ const SInteractionHangeulContainer = styled.ul(({ theme }) => {
     alignItems: 'center',
     gridAutoRows: 'minmax(min-content, max-content)',
     gap: 44,
+    [theme.breakpoints.down('lg')]: {
+      visibility: 'hidden',
+      opacity: 0,
+      height: 0,
+      width: 0,
+    },
     [theme.breakpoints.down('sm')]: {
       marginTop: 30,
     },
@@ -110,21 +121,19 @@ export function Introduction() {
           })}
         </div>
       </SIntroduceContainer>
-      {isLgQuery && (
-        <SInteractionHangeulContainer>
-          {hangeulArray.map((variant, index) => {
-            const itemPercent =
-              trigger === 'current' ? percent : trigger === 'before' ? 0 : 100;
-            return (
-              <HangeulPathLine
-                variant={variant}
-                percent={itemPercent}
-                key={variant}
-              />
-            );
-          })}
-        </SInteractionHangeulContainer>
-      )}
+      <SInteractionHangeulContainer>
+        {hangeulArray.map(variant => {
+          const itemPercent =
+            trigger === 'current' ? percent : trigger === 'before' ? 0 : 100;
+          return (
+            <HangeulPathLine
+              variant={variant}
+              percent={itemPercent}
+              key={variant}
+            />
+          );
+        })}
+      </SInteractionHangeulContainer>
     </SectionWrapper>
   );
 }

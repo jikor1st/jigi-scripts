@@ -12,18 +12,18 @@ interface PortalProps {
 export const PortalProvider = forwardRef<HTMLDivElement, PortalProps>(
   ({ children }, rootRef) => {
     const { isBrowser } = useSsr();
-    const el = useRef(isBrowser && document.createElement('div'));
+    const el = useRef<HTMLDivElement>(document.createElement('div'));
 
     useEffect(() => {
       const current = el.current;
       if (!isBrowser || !current) return;
-      // rootRef = el;
+      rootRef = el;
 
       const portalRoot = portalSelector.getDOM() as HTMLElement;
       portalRoot!.appendChild(current);
 
       return () => {
-        // rootRef = null;
+        rootRef = null;
         void portalRoot!.removeChild(current);
       };
     }, [isBrowser]);

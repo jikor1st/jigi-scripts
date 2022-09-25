@@ -31,7 +31,7 @@ const lightPalette: ThemePalette = {
   },
   text: {
     primary: '#222222',
-    secondary: '#7E7E7E',
+    secondary: '#454648',
     light: '#B5B5B5',
   },
   divider: {
@@ -93,7 +93,7 @@ const darkPalette: ThemePalette = {
   },
   text: {
     primary: '#f3f3f3',
-    secondary: '#7E7E7E',
+    secondary: '#b8b9bf',
     light: '#B5B5B5',
   },
   divider: {

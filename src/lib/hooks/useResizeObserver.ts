@@ -1,7 +1,5 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import PolyfillResizeObserver from 'resize-observer-polyfill';
-
-import { useConditionEffect } from '@/lib/hooks';
 
 interface userResizeObserverProps {
   onResizeObserver?: (rect: { width: number; height: number }) => void;
@@ -36,18 +34,14 @@ const useResizeObserver = ({
     }
   };
 
-  useConditionEffect(
-    () => {
-      observerRef.current = new PolyfillResizeObserver(installResizeObserver);
+  useEffect(() => {
+    observerRef.current = new PolyfillResizeObserver(installResizeObserver);
 
-      return () => {
-        if (!observerRef.current || !targetElementRef.current) return;
-        unRegisterObserver(targetElementRef.current);
-      };
-    },
-    [],
-    { componentDidUpdateCondition: false },
-  );
+    return () => {
+      if (!observerRef.current || !targetElementRef.current) return;
+      unRegisterObserver(targetElementRef.current);
+    };
+  }, []);
   return {
     registerObserver,
     unRegisterObserver,

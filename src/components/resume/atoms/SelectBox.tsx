@@ -33,18 +33,6 @@ const SSelectBox = styled.div<{ isOpen: boolean }>(({ theme, isOpen }) => {
       color: color,
       transition: 'color 0.08s linear, border 0.08s linear',
     },
-    '&:before': {
-      content: '""',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      display: 'block',
-      width: '100%',
-      height: '100%',
-      backgroundColor: theme.palette.actions.hover,
-      transition: 'opacity 0.08s linear',
-      opacity: isOpen ? 0.34 : 0,
-    },
   };
 });
 
@@ -92,25 +80,15 @@ const SOptionsBox = styled.div<{ selectBoxHeight: number }>(
   },
 );
 const SOption = styled.button<{ isActive: boolean }>(({ theme, isActive }) => {
-  const isDarkMode = theme.palette.mode === 'dark';
-
-  let color = '';
-  if (!isDarkMode) {
-    color = isActive ? theme.palette.primary.main : theme.palette.text.primary;
-  } else {
-    color = isActive ? theme.palette.primary.main : theme.palette.text.primary;
-  }
-
   return {
     position: 'relative',
     textAlign: 'left',
     width: '100%',
     borderRaidus: 12,
     ...theme.typography.body1,
-    ...(isActive && {
-      fontWeight: theme.typography.fontWeight.Medium,
-    }),
-    color: color,
+    color: isActive
+      ? theme.palette.primary.contrast
+      : theme.palette.text.primary,
     padding: `4px 8px`,
     '&:not(:last-child)': {
       marginBottom: 2,
@@ -125,9 +103,9 @@ const SOption = styled.button<{ isActive: boolean }>(({ theme, isActive }) => {
         margin: '0 4px',
         width: 'calc(100% - 8px)',
         height: '100%',
-        background: theme.palette.primary.light,
+        background: theme.palette.primary.main,
         borderRadius: 18,
-        opacity: isDarkMode ? 0.1 : 1,
+        opacity: 0.75,
       },
     }),
   };

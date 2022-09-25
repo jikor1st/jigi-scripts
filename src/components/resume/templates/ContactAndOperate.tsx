@@ -1,5 +1,5 @@
 import { TupleContainer } from '../organisms';
-import { SubjectInform, ContactList } from '../moecules';
+import { ContactList } from '../moecules';
 import { SectionWrapper, SectionTitle } from '../atoms';
 
 import { RESUME } from '@/lib/constants';
