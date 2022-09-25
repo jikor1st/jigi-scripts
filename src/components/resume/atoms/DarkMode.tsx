@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 
 import { Icon } from '@/baseComponents';
-import { useDarkMode } from '@/lib/hooks';
+import { useDarkMode, useMounted } from '@/lib/hooks';
+import { useEffect } from 'react';
 
 const SContainer = styled.div(() => {
   return {};
@@ -27,9 +28,8 @@ const SIconButton = styled.button(({ theme }) => {
   };
 });
 
-const SSliderContainer = styled.div<{ isDarkMode: boolean }>(
-  ({ theme, isDarkMode }) => {
-    const rotateWithDarkMode = !isDarkMode ? 0 : 180;
+const SSliderContainer = styled.div<{ darkModeRotate: number }>(
+  ({ theme, darkModeRotate }) => {
     return {
       fontSize: 0,
       boxSizing: 'content-box',
@@ -39,7 +39,7 @@ const SSliderContainer = styled.div<{ isDarkMode: boolean }>(
       width: theme.typography.pxToRem(96),
       height: theme.typography.pxToRem(96),
       padding: 8,
-      transform: `translateX(-50%) rotate(${rotateWithDarkMode}deg)`,
+      transform: `translateX(-50%) rotate(${darkModeRotate}deg)`,
       transition: 'transform 0.23s ease-in-out',
     };
   },
@@ -65,22 +65,25 @@ const SSliderMoon = styled.div(() => {
 
 export function DarkMode() {
   const { isDarkMode, toggle } = useDarkMode();
+  const isMounted = useMounted();
   const handleClickToggleDarkMode = () => {
     toggle();
   };
 
   return (
     <SContainer>
-      <SIconButton onClick={handleClickToggleDarkMode}>
-        <SSliderContainer isDarkMode={isDarkMode}>
-          <SSliderSun>
-            <Icon icon="Sun" size={'medium'} />
-          </SSliderSun>
-          <SSliderMoon>
-            <Icon icon="Moon" size={'medium'} />
-          </SSliderMoon>
-        </SSliderContainer>
-      </SIconButton>
+      {isMounted && (
+        <SIconButton onClick={handleClickToggleDarkMode}>
+          <SSliderContainer darkModeRotate={!isDarkMode ? 0 : 180}>
+            <SSliderSun>
+              <Icon icon="Sun" size={'medium'} />
+            </SSliderSun>
+            <SSliderMoon>
+              <Icon icon="Moon" size={'medium'} />
+            </SSliderMoon>
+          </SSliderContainer>
+        </SIconButton>
+      )}
     </SContainer>
   );
 }
