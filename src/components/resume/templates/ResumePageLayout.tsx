@@ -26,15 +26,15 @@ export function ResumePageLayout({ children }: ResumeLayoutProps) {
 
   const { registerTriggerTarget, triggerStart } = useScrollTrigger();
 
+  const isVisible =
+    typeof window !== 'undefined' && triggerStart > window.innerHeight / 1.5;
+
   return (
     <SContainer ref={el => registerTriggerTarget(el as HTMLDivElement)}>
       <HeaderLayout />
       <SWrapper>
         <MainLayout page={children} />
-        <TopButton
-          isBottom={isFooterVisible}
-          isVisible={triggerStart > window.innerHeight / 1.5}
-        />
+        <TopButton isBottom={isFooterVisible} isVisible={isVisible} />
       </SWrapper>
       <FooterLayout ref={footerElRef} />
     </SContainer>

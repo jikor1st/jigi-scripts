@@ -39,9 +39,9 @@ export const Icon: React.FC<IconBaseProps> = memo(
   ({ icon, variant = 'default', color = 'secondary', size = 'medium' }) => {
     const theme = useTheme();
 
-    let iconFill = 'none';
-    let bgFill = 'none';
-    let bgOutline = 'none';
+    let iconFill = 'transparent';
+    let bgFill = 'transparent';
+    let bgOutline = 'transparent';
 
     const colorThemeKey: ColorThemeKey[] = [
       'primary',

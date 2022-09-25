@@ -13,13 +13,21 @@ const SContainer = styled.div(({ theme }) => {
 const SListWrap = styled.ul(({ theme }) => {
   return {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+    gridTemplateColumns: 'repeat(3, 1fr)',
     gap: `20px ${theme.typography.pxToRem(60)}`,
     flexWrap: 'wrap',
+    [theme.breakpoints.down('lg')]: {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+    },
+    [theme.breakpoints.down('sm')]: {
+      gridTemplateColumns: 'repeat(1, 1fr)',
+    },
   };
 });
 const SListItem = styled.li(({ theme }) => {
-  return {};
+  return {
+    // maxWidth: 260,
+  };
 });
 const STitleWrap = styled.div(() => {
   return {

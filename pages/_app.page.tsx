@@ -1,7 +1,7 @@
 import type { AppProps, AppContext } from 'next/app';
 import Head from 'next/head';
 import { PageLayout } from '@/containers';
-import '../public/assets/fonts/fonts.css';
+// import '../public/assets/fonts/fonts.css';
 
 // react Query
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -15,6 +15,7 @@ import { REACT_QUERY_DEFAULT_OPTIONS } from '@/lib/constants';
 // emotion
 import styled from '@emotion/styled';
 import { Global, ThemeProvider } from '@emotion/react';
+
 // theme
 import { useGlobalTheme } from '@/lib/theme';
 
@@ -46,19 +47,6 @@ const AppPage = ({ Component, pageProps }: AppPropsWithLayoutProps) => {
 
   const { prepareGlobalTheme, globalTheme } = useGlobalTheme();
 
-  const body = (
-    <RecoilRoot>
-      <ThemeProvider theme={globalTheme}>
-        <QueryClientProvider client={queryClient}>
-          {/* <InitialApp {...initialAppProps} /> */}
-          <Global styles={[ResetCss, GlobalCss]} />
-          {getLayout(<Component {...pageProps} />)}
-          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-        </QueryClientProvider>
-      </ThemeProvider>
-    </RecoilRoot>
-  );
-
   return (
     <>
       <Head>
@@ -68,7 +56,14 @@ const AppPage = ({ Component, pageProps }: AppPropsWithLayoutProps) => {
         />
       </Head>
       <VisibleSection isVisible={prepareGlobalTheme}>
-        {prepareGlobalTheme && body}
+        <RecoilRoot>
+          <ThemeProvider theme={globalTheme}>
+            <QueryClientProvider client={queryClient}>
+              <Global styles={[ResetCss, GlobalCss]} />
+              {getLayout(<Component {...pageProps} />)}
+            </QueryClientProvider>
+          </ThemeProvider>
+        </RecoilRoot>
       </VisibleSection>
     </>
   );

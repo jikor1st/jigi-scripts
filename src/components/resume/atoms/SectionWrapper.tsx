@@ -11,10 +11,20 @@ const SSection = styled.section<SSectionProps>(({ theme, sx, styles }) => {
   return {
     maxWidth: theme.breakpoints.values.xxl,
     margin: '0 auto',
+    padding: '0 20px',
     '&:not(:last-child)': {
       marginBottom: 200,
     },
-    padding: '0 20px',
+    [theme.breakpoints.down('lg')]: {
+      '&:not(:last-child)': {
+        marginBottom: 150,
+      },
+    },
+    [theme.breakpoints.down('sm')]: {
+      '&:not(:last-child)': {
+        marginBottom: 100,
+      },
+    },
     ...theme.breakpoints.createStyle(sx),
     ...styles,
   };
