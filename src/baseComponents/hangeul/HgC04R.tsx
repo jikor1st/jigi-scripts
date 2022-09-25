@@ -1,9 +1,10 @@
 import { forwardRef } from 'react';
 import { HangeulSVGProps } from '@/lib/types';
-import { SVG } from './SVG';
+import { SVG, initStroke } from './SVG';
 
 export const HgC04R = forwardRef<SVGSVGElement, HangeulSVGProps>(
-  ({ stroke, strokeWidth, ...rest }, svgRef) => {
+  ({ stroke, strokeWidth, isVisible, ...rest }, svgRef) => {
+    const isDrawing = isVisible ? initStroke.draw : initStroke.erase;
     return (
       <SVG ref={svgRef} {...rest} viewBox="0 0 72 72">
         <g transform="translate(-453 -531)">
@@ -21,6 +22,7 @@ export const HgC04R = forwardRef<SVGSVGElement, HangeulSVGProps>(
             strokeLinecap="square"
             strokeMiterlimit="10"
             strokeWidth={strokeWidth}
+            {...isDrawing}
           />
         </g>
       </SVG>

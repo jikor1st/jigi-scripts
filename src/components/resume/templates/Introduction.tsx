@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
 
@@ -7,12 +7,7 @@ import { v4 } from 'uuid';
 
 import { RESUME, HANGEUL } from '@/lib/constants';
 
-import {
-  usePathAnimation,
-  useScrollTrigger,
-  useMediaQuery,
-  useSsr,
-} from '@/lib/hooks';
+import { usePathAnimation, useScrollTrigger } from '@/lib/hooks';
 
 interface HangeulPathLineProps {
   variant: keyof typeof HANGEUL;
@@ -24,7 +19,8 @@ type HangeulArrayType = Array<keyof typeof HANGEUL>;
 const HangeulPathLine = ({ variant, percent }: HangeulPathLineProps) => {
   const theme = useTheme();
 
-  const { registerSVG, pathUtils } = usePathAnimation({});
+  const hangeulElRef = useRef<SVGSVGElement | null>(null);
+  const { pathUtils } = usePathAnimation(hangeulElRef, {});
 
   useEffect(() => {
     pathUtils.line({ percent: percent });
@@ -35,7 +31,7 @@ const HangeulPathLine = ({ variant, percent }: HangeulPathLineProps) => {
       variant={variant}
       strokeWidth={16}
       stroke={theme.palette.secondary.light}
-      registerSVG={registerSVG}
+      ref={hangeulElRef}
     />
   );
 };
@@ -68,9 +64,6 @@ const SInteractionHangeulContainer = styled.ul(({ theme }) => {
 // 자기소개
 export function Introduction() {
   const theme = useTheme();
-  const isLgQuery = useMediaQuery(
-    theme.breakpoints.up('lg').split('@media')[1],
-  );
 
   const [hangeulArray] = useState<HangeulArrayType>(
     Object.keys(HANGEUL) as HangeulArrayType,

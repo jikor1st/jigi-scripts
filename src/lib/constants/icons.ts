@@ -2,6 +2,7 @@
 import ArrowDown from 'public/assets/images/icons/icon_arrow_down.svg';
 import Check from 'public/assets/images/icons/icon_check.svg';
 import Close from 'public/assets/images/icons/icon_close.svg';
+import Warning from 'public/assets/images/icons/icon_warning.svg';
 import Required from 'public/assets/images/icons/icon_required.svg';
 import Copy from 'public/assets/images/icons/icon_copy.svg';
 import Moon from 'public/assets/images/icons/icon_moon.svg';
@@ -15,6 +16,7 @@ export const ICONS = {
   ArrowDown,
   Check,
   Close,
+  Warning,
   Required,
   Copy,
   Moon,
