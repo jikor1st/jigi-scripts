@@ -27,12 +27,12 @@ const lightPalette: ThemePalette = {
   },
   background: {
     paper: 'rgba(255,255,255,0.72)',
-    canvas: '#f0f0f552',
+    canvas: '#f0f0f58c',
   },
   text: {
     primary: '#222222',
     secondary: '#454648',
-    light: '#B5B5B5',
+    light: '#979595',
   },
   divider: {
     primary: '#808080',
@@ -70,7 +70,7 @@ const darkPalette: ThemePalette = {
     contrast: '#F5FAFF',
   },
   secondary: {
-    main: '#ffffff',
+    main: '#eeeeef',
     dark: '#27282A',
     light: '#D8E2E9',
     contrast: '#FFFFFF',

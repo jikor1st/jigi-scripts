@@ -1,5 +1,5 @@
-import { useEffect, useState, useTransition } from 'react';
-import { useDarkMode, useSsr } from '@/lib/hooks';
+import { useEffect, useState } from 'react';
+import { useDarkMode } from '@/lib/hooks';
 
 import {
   typographyOptions,

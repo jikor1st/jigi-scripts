@@ -39,13 +39,14 @@ interface PathUtils {
 
 export interface UsePathAnimationReturn {
   svgElRef: MutableRefObject<SVGSVGElement | null>;
+  registerSVG(svgEl: SVGSVGElement): void;
   pathUtils: PathUtils;
   pathStatusRef: MutableRefObject<PathStatus>;
   toggleTransition: () => void;
 }
 
 interface PathAnimaFunctions {
-  onPrepareSVG?: () => void;
+  onPrepareSVG?(): () => void;
   onPathTransitionEnd?: (props: { type: PathType }) => void;
   onPathDrawAllEnd?: () => void;
   onPathEraseAllEnd?: () => void;
@@ -125,18 +126,21 @@ const transitionUtils = {
   },
 };
 
-export function usePathAnimation(
-  svgElRef: MutableRefObject<SVGSVGElement | null>,
-  {
-    options,
-    onPrepareSVG,
-    onPathTransitionEnd,
-    onPathEraseAllEnd,
-    onPathDrawAllEnd,
-    onPathSetWidthEnd,
-  }: UsePathAnimationProps,
-): UsePathAnimationReturn {
+export function usePathAnimation({
+  options,
+  onPrepareSVG,
+  onPathTransitionEnd,
+  onPathEraseAllEnd,
+  onPathDrawAllEnd,
+  onPathSetWidthEnd,
+}: UsePathAnimationProps): UsePathAnimationReturn {
   const { initDraw = true } = options ?? {};
+
+  const svgElRef = useRef<SVGSVGElement | null>(null);
+  const registerSVG = (svg: SVGSVGElement) => {
+    svgElRef.current = svg as SVGSVGElement;
+  };
+  const pathElsRef = useRef<SVGPathElement[] | null>(null);
 
   const pathStatusRef = useRef<PathStatus>({
     type: '',
@@ -147,7 +151,18 @@ export function usePathAnimation(
   const pathTransitionTimerRef =
     useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const prepareSVG = () => {
+  const prepareSVG = (svg?: SVGSVGElement | null) => {
+    if (!svg) return;
+    // setting initial settings
+    if (!initDraw) {
+      pathUtils.eraseAll({ transition: [], broadcast: false });
+    } else {
+      pathUtils.drawAll({ transition: [], broadcast: false });
+    }
+
+    // prepare view
+    svg.style.visibility = 'visible';
+
     if (typeof onPrepareSVG === 'function') {
       onPrepareSVG();
     }
@@ -167,6 +182,7 @@ export function usePathAnimation(
   const pathUtils: PathUtils = {
     setWidth(pathProps) {
       if (!svgElRef.current) return;
+      svgElRef.current.style.visibility = 'visible';
       if (pathStatusRef.current.type === 'width') return;
 
       const {
@@ -214,10 +230,8 @@ export function usePathAnimation(
 
         pathEl.style.opacity = (0).toString();
         pathEl.style.strokeWidth = strokeWidth.toString();
-        // pathEl.style.strokeDasharray = pathLength.toString();
-        // pathEl.style.strokeDashoffset = pathLength.toString();
-        pathEl.style.strokeDasharray = '270';
-        pathEl.style.strokeDashoffset = '270';
+        pathEl.style.strokeDasharray = pathLength.toString();
+        pathEl.style.strokeDashoffset = pathLength.toString();
       });
 
       const bigDuration = transitionUtils.bigDuration(transition);
@@ -248,7 +262,7 @@ export function usePathAnimation(
         pathEl.style.opacity = (1).toString();
 
         pathEl.style.strokeWidth = strokeWidth.toString();
-        pathEl.style.strokeDasharray = '270';
+        pathEl.style.strokeDasharray = pathLength.toString();
         pathEl.style.strokeDashoffset = '0';
       });
 
@@ -279,15 +293,14 @@ export function usePathAnimation(
   const handleTransitionEnd = (duration: number) => {
     timerReset(pathTransitionTimerRef.current);
     if (!pathStatusRef.current.broadcast) return;
-    if (!svgElRef.current) return;
-    const pathEls = getAllPaths(svgElRef.current);
 
     const pathStatusType = pathStatusRef.current.type;
     pathTransitionTimerRef.current = setTimeout(() => {
-      if (!svgElRef.current) return;
-      pathEls.map(pathEl => {
-        pathEl.style.removeProperty('transition');
-      });
+      if (pathElsRef.current) {
+        pathElsRef.current.map(pathEl => {
+          pathEl.style.removeProperty('transition');
+        });
+      }
 
       if (pathStatusType === 'width') {
         if (typeof onPathSetWidthEnd === 'function') {
@@ -312,15 +325,15 @@ export function usePathAnimation(
   };
 
   useEffect(() => {
-    prepareSVG();
+    prepareSVG(svgElRef.current);
     return () => {
       timerReset(pathTransitionTimerRef.current);
     };
-  }, [svgElRef]);
-  useEffect(() => {}, []);
+  }, [svgElRef.current]);
 
   return {
     svgElRef,
+    registerSVG,
     pathUtils,
     pathStatusRef,
     toggleTransition,

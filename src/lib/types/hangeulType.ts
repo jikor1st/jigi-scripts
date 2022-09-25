@@ -1,6 +1,6 @@
 export interface HangeulSVGProps {
   stroke: string;
   strokeWidth: number;
-  visibility?: string;
+  isVisible?: boolean;
   opacity?: number;
 }

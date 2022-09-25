@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
-import { useConditionEffect, usePathAnimation } from '@/lib/hooks';
+import { usePathAnimation } from '@/lib/hooks';
 
-import {
-  InteractionHangeulHeadLine,
-  InteractionHangeulController,
-} from '../moecules';
+import { HangeulPath } from '../atoms';
+import { InteractionHangeulController } from '../moecules';
 import { HANGEUL } from '@/lib/constants';
 
 interface ResumeHead {}
@@ -21,10 +19,10 @@ const SContainer = styled.section(({ theme }) => {
     maxWidth: theme.breakpoints.values.xxl,
     margin: '0 auto',
     padding: '0 20px',
+    paddingBottom: theme.typography.h2.lineHeight,
     [theme.breakpoints.down('lg')]: {
       display: 'block',
       minHeight: `calc(100vh - 58px)`,
-      paddingBottom: `calc(${theme.typography.h2.lineHeight} * 1.5)`,
     },
     [theme.breakpoints.down('sm')]: {
       display: 'block',
@@ -133,10 +131,9 @@ export function Headline({}: ResumeHead) {
     Object.keys(HANGEUL) as HangeulArrayType,
   );
   const [hangeulIndex, setHangeulIndex] = useState(0);
-  const { svgElRef, pathStatusRef, registerSVG, pathUtils } = usePathAnimation({
-    options: {
-      initDraw: false,
-    },
+  const hangeulElRef = useRef<SVGSVGElement | null>(null);
+  const { pathUtils } = usePathAnimation(hangeulElRef, {
+    options: {},
     onPathTransitionEnd: ({ type }) => {
       if (type === 'draw') {
         erasePath();
@@ -150,13 +147,13 @@ export function Headline({}: ResumeHead) {
       transition: [
         {
           property: 'stroke-width',
-          duration: '600ms',
+          duration: '650ms',
           timing: 'ease-out',
-          delay: '60ms',
+          delay: '100ms',
         },
         {
           property: 'stroke-dashoffset',
-          duration: '700ms',
+          duration: '800ms',
           timing: 'ease',
           delay: '0ms',
         },
@@ -167,23 +164,23 @@ export function Headline({}: ResumeHead) {
           delay: '590ms',
         },
       ],
-      strokeWidth: 9,
+      strokeWidth: 8,
     });
   }
   function drawPath() {
-    pathUtils.setWidth({ transition: [], strokeWidth: 9 });
+    pathUtils.setWidth({ transition: [], strokeWidth: 8 });
     pathUtils.drawAll({
       strokeWidth: 16,
       transition: [
         {
           property: 'stroke-width',
-          duration: '880ms',
+          duration: '300ms',
           timing: 'ease',
           delay: '0ms',
         },
         {
           property: 'stroke-dashoffset',
-          duration: '880ms',
+          duration: '1200ms',
           timing: 'ease',
           delay: '0ms',
         },
@@ -203,12 +200,6 @@ export function Headline({}: ResumeHead) {
     setHangeulIndex(prev => (prev !== hangeulArray.length - 1 ? prev + 1 : 0));
 
   useEffect(() => {
-    if (svgElRef.current) {
-      svgElRef.current.style.visibility = 'visible';
-    }
-    if (pathStatusRef.current.type === '') {
-      erasePath();
-    }
     drawPath();
   }, [hangeulIndex, theme.palette.primary.main, theme.palette.shadow.hangeul]);
 
@@ -239,10 +230,11 @@ export function Headline({}: ResumeHead) {
         </SControllerWrapper>
       </SHeadLineWrapper>
       <SHangeulWrapper>
-        <InteractionHangeulHeadLine
+        <HangeulPath
           variant={hangeulArray[hangeulIndex]}
-          registerSVG={registerSVG}
+          strokeWidth={8}
           stroke={theme.palette.primary.main}
+          ref={hangeulElRef}
         />
       </SHangeulWrapper>
     </SContainer>

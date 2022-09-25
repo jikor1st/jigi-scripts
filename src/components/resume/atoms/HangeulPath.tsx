@@ -1,4 +1,4 @@
-import { createElement, memo } from 'react';
+import { createElement, forwardRef, memo } from 'react';
 
 import styled from '@emotion/styled';
 import { HANGEUL } from '@/lib/constants';
@@ -21,23 +21,17 @@ type OptionalHangeulSVGProps = {
 export interface HangeulPathProps
   extends Omit<OptionalHangeulSVGProps, 'visibility'> {
   variant: keyof typeof HANGEUL;
-  registerSVG: UsePathAnimationReturn['registerSVG'];
 }
 
-export const HangeulPath = memo(
-  ({
-    variant,
-    stroke = '#000000',
-    strokeWidth,
-    registerSVG,
-  }: HangeulPathProps) => {
+export const HangeulPath = forwardRef<SVGSVGElement, HangeulPathProps>(
+  ({ variant, stroke = '#000000', strokeWidth }, rootRef) => {
     return (
       <HangeulBox>
         {createElement(HANGEUL[variant], {
           stroke: stroke,
           strokeWidth: strokeWidth,
-          visibility: 'hidden',
-          ref: registerSVG,
+          isVisible: false,
+          ref: rootRef,
         })}
       </HangeulBox>
     );
