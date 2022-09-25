@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useDarkMode } from '@/lib/hooks';
+import { useEffect, useState, useTransition } from 'react';
+import { useDarkMode, useSsr } from '@/lib/hooks';
 
 import {
   typographyOptions,
@@ -26,8 +26,7 @@ const darkGlobalTheme = {
 
 export function useGlobalTheme() {
   const [prepareGlobalTheme, setPrepareGlobalTheme] = useState(false);
-
-  const { isDarkMode } = useDarkMode();
+  const { isDarkMode } = useDarkMode(false);
   const [globalTheme, setGlobalTheme] = useState(lightGlobalTheme);
 
   useEffect(() => {

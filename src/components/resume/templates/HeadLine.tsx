@@ -16,7 +16,7 @@ const SContainer = styled.section(({ theme }) => {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    gap: '0 40px',
+    gap: '0 36px',
     minHeight: `calc(100vh - 74px)`,
     maxWidth: theme.breakpoints.values.xxl,
     margin: '0 auto',
@@ -31,6 +31,11 @@ const SContainer = styled.section(({ theme }) => {
       minHeight: `calc(100vh - 58px)`,
       paddingBottom: `calc(${theme.typography.h3.lineHeight} * 1.5)`,
     },
+    [`@media ${
+      theme.breakpoints.down('lg').split('@media')[1]
+    } and (min-height:920px)`]: {
+      minHeight: 'unset',
+    },
   };
 });
 
@@ -38,7 +43,7 @@ const SHeadLineWrapper = styled.div(({ theme }) => {
   return {
     position: 'relative',
     zIndex: 1,
-    transform: 'translateY(-100px)',
+    paddingBottom: 40,
     [theme.breakpoints.down('lg')]: {
       transform: 'none',
       paddingTop: 40,
@@ -47,11 +52,11 @@ const SHeadLineWrapper = styled.div(({ theme }) => {
 });
 const SHeadLineTitle = styled.h2(({ theme }) => {
   return {
-    wordBreak: 'keep-all',
     color: theme.palette.text.primary,
     ...theme.typography.h1,
     [theme.breakpoints.down('lg')]: {
       ...theme.typography.h3,
+      whiteSpace: 'nowrap',
     },
     [theme.breakpoints.down('sm')]: {
       ...theme.typography.h4,
@@ -60,7 +65,7 @@ const SHeadLineTitle = styled.h2(({ theme }) => {
 });
 const SHeadLineSubTitle = styled.h3(({ theme }) => {
   return {
-    color: theme.palette.text.primary,
+    color: theme.palette.text.secondary,
     ...theme.typography.subtitle1,
     marginTop: theme.typography.pxToRem(26),
     [theme.breakpoints.down('sm')]: {
@@ -80,6 +85,20 @@ const SHighlight = styled.span(({ theme }) => {
     fontWeight: theme.typography.fontWeight.Bold,
   };
 });
+const SXlBr = styled.br(({ theme }) => {
+  return {
+    [theme.breakpoints.up('xl')]: {
+      display: 'none',
+    },
+  };
+});
+const SLgBr = styled.br(({ theme }) => {
+  return {
+    [theme.breakpoints.up('lg')]: {
+      display: 'none',
+    },
+  };
+});
 const SSmBr = styled.br(({ theme }) => {
   return {
     [theme.breakpoints.up('sm')]: {
@@ -97,9 +116,10 @@ const SHangeulWrapper = styled.div(({ theme }) => {
     [theme.breakpoints.down('lg')]: {
       position: 'absolute',
       left: '50%',
-      bottom: '0',
-      transform: 'translate(-50%, -20%)',
-      opacity: 0.18,
+      top: '40%',
+      transform: 'translate(-50%, -50%)',
+      opacity: 0.14,
+      filter: 'grayscale(0.75)',
     },
   };
 });
@@ -197,17 +217,17 @@ export function Headline({}: ResumeHead) {
       <SHeadLineWrapper>
         <SHeadLineTitle>
           방문해 주셔서
-          <SSmBr /> 감사합니다!
+          <SXlBr /> 감사합니다!
           <br />
           프론트엔드 <SSmBr />
           개발자
-          <SSmBr />
+          <SXlBr />
           <SHighlight> 지기역</SHighlight>입니다.
         </SHeadLineTitle>
         <SHeadLineSubTitle>
           저의 이름처럼
           <SSmBr /> ㄱ부터 ㅎ까지
-          <SSmBr /> 단계적으로
+          <SLgBr /> 단계적으로
           <SSmBr /> 나아갑니다.
         </SHeadLineSubTitle>
         <SControllerWrapper>

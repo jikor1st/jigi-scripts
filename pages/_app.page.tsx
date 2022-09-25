@@ -1,7 +1,8 @@
 import type { AppProps, AppContext } from 'next/app';
+import dynamic from 'next/dynamic';
+
 import Head from 'next/head';
 import { PageLayout } from '@/containers';
-// import '../public/assets/fonts/fonts.css';
 
 // react Query
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -14,7 +15,13 @@ import { REACT_QUERY_DEFAULT_OPTIONS } from '@/lib/constants';
 
 // emotion
 import styled from '@emotion/styled';
-import { Global, ThemeProvider } from '@emotion/react';
+import { Global } from '@emotion/react';
+const ThemeProvider = dynamic(
+  () => {
+    return import('@emotion/react').then(mode => mode.ThemeProvider);
+  },
+  { ssr: true },
+);
 
 // theme
 import { useGlobalTheme } from '@/lib/theme';
@@ -58,10 +65,10 @@ const AppPage = ({ Component, pageProps }: AppPropsWithLayoutProps) => {
       <VisibleSection isVisible={prepareGlobalTheme}>
         <RecoilRoot>
           <ThemeProvider theme={globalTheme}>
-            <QueryClientProvider client={queryClient}>
-              <Global styles={[ResetCss, GlobalCss]} />
-              {getLayout(<Component {...pageProps} />)}
-            </QueryClientProvider>
+            {/* <QueryClientProvider client={queryClient}> */}
+            <Global styles={[ResetCss, GlobalCss]} />
+            {getLayout(<Component {...pageProps} />)}
+            {/* </QueryClientProvider> */}
           </ThemeProvider>
         </RecoilRoot>
       </VisibleSection>
