@@ -17,7 +17,7 @@ import { REACT_QUERY_DEFAULT_OPTIONS } from '@/lib/constants';
 import styled from '@emotion/styled';
 import { Global } from '@emotion/react';
 const ThemeProvider = dynamic(
-  () => {
+  async () => {
     return import('@emotion/react').then(mode => mode.ThemeProvider);
   },
   { ssr: true },
