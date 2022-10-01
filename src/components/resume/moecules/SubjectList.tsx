@@ -51,10 +51,17 @@ const SSkillTagListWrap = styled.ul(({ theme }) => {
     marginTop: theme.typography.pxToRem(20),
   };
 });
+const SDate = styled.p(({ theme }) => {
+  return {
+    ...theme.typography.subtitle2,
+    color: theme.palette.text.secondary,
+  };
+});
 
 interface SubjectListProps {
   list?: {
     title: string;
+    date?: string[];
     href?: string;
     inform?: string;
     items?: string[];
@@ -68,7 +75,7 @@ export function SubjectList({ list }: SubjectListProps) {
     <>
       {list &&
         list.map(
-          ({ title, href, inform, items, detailItems, skillTagList }) => (
+          ({ title, date, href, inform, items, detailItems, skillTagList }) => (
             <SContainer key={`wrapper-${v4()}`}>
               {/* 제목 */}
               <ListTitle
@@ -81,6 +88,14 @@ export function SubjectList({ list }: SubjectListProps) {
               >
                 {title}
               </ListTitle>
+              {/*  */}
+              {date && (
+                <SDate>
+                  {date.map((dateItem, index, arr) =>
+                    index === arr.length - 1 ? dateItem : `${dateItem} - `,
+                  )}
+                </SDate>
+              )}
               {/* 링크 */}
               {href && (
                 <CopyLink

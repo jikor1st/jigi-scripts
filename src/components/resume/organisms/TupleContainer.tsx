@@ -49,7 +49,7 @@ interface TupleContainerProps {
 }
 
 export function TupleContainer({ left, right }: TupleContainerProps) {
-  const infoItem = () => {
+  const InfoItem = () => {
     return (
       <>
         {right.inform && (
@@ -76,7 +76,7 @@ export function TupleContainer({ left, right }: TupleContainerProps) {
     <SContainer>
       <SLeft>{left}</SLeft>
       <SRight>
-        {infoItem()}
+        {InfoItem()}
         {right.contents && <SRightContents>{right.contents}</SRightContents>}
       </SRight>
     </SContainer>
