@@ -131,7 +131,7 @@ export default function IntroducePage({ introduceData }: IntroducePageProps) {
         title="지기역"
         siteName="자기소개서"
         description="프론트엔드 개발자 지기역 자기소개서입니다."
-        ogImage="https://jikor1st.github.io/assets/og/resume-og.png"
+        ogImage="https://jikor1st.github.io/assets/og/introduce-og.png"
         ogUrl="https://jigi-scripts.vercel.app"
       />
       <PageContainer>
