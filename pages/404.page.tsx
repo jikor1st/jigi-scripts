@@ -15,6 +15,7 @@ const OverView = styled.span(({ theme }) => {
 const Highlighter = styled.span(({ theme }) => {
   return {
     color: theme.palette.error.main,
+    wordBreak: 'break-all',
   };
 });
 
