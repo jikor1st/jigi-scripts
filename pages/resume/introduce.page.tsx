@@ -8,6 +8,8 @@ import { useTheme } from '@emotion/react';
 import { Icon } from '@/baseComponents';
 import { ResumePageLayout } from '@/components/resume/templates';
 
+import { Seo } from '@/extendsComponents';
+
 const PageContainer = styled.div(() => {
   return {
     padding: '80px 20px',
@@ -124,22 +126,31 @@ interface IntroducePageProps {
 }
 export default function IntroducePage({ introduceData }: IntroducePageProps) {
   return (
-    <PageContainer>
-      <PageWrapper>
-        <HeadTitle>
-          <HighLighter>지기역</HighLighter> <SmBr />
-          자기소개서
-        </HeadTitle>
-        {introduceData.contentHtml && (
-          <div
-            dangerouslySetInnerHTML={{ __html: introduceData.contentHtml }}
-          />
-        )}
-        {introduceData.mdxSource && (
-          <MDXRemote {...introduceData.mdxSource} components={components} />
-        )}
-      </PageWrapper>
-    </PageContainer>
+    <>
+      <Seo
+        title="지기역"
+        siteName="이력서"
+        description="프론트엔드 개발자 지기역 이력서입니다."
+        ogImage="https://jikor1st.github.io/assets/og/resume-og.png"
+        ogUrl="https://jigi-scripts.vercel.app"
+      />
+      <PageContainer>
+        <PageWrapper>
+          <HeadTitle>
+            <HighLighter>지기역</HighLighter> <SmBr />
+            자기소개서
+          </HeadTitle>
+          {introduceData.contentHtml && (
+            <div
+              dangerouslySetInnerHTML={{ __html: introduceData.contentHtml }}
+            />
+          )}
+          {introduceData.mdxSource && (
+            <MDXRemote {...introduceData.mdxSource} components={components} />
+          )}
+        </PageWrapper>
+      </PageContainer>
+    </>
   );
 }
 
