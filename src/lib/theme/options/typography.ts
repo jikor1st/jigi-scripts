@@ -25,7 +25,7 @@ export const typographyOptions = {
   htmlFontSize: initialHtmlFontSize,
   fontWeight: fontWeightValues,
   pxToRem(px: number) {
-    return pxToRem(px, this.htmlFontSize);
+    return pxToRem(px, initialHtmlFontSize);
   },
   h1: {
     fontFamily: 'Pretendard',

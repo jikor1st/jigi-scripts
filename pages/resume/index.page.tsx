@@ -38,5 +38,9 @@ export default function ResumePage() {
 }
 
 ResumePage.getLayout = function getLayout(page: ReactElement) {
-  return <ResumePageLayout>{page}</ResumePageLayout>;
+  return (
+    <ResumePageLayout pageTitle="이력서" footerNavVisible>
+      {page}
+    </ResumePageLayout>
+  );
 };

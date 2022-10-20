@@ -2,12 +2,15 @@ import { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
 
-import { SectionWrapper, SectionTitle, InfoText, HangeulPath } from '../atoms';
 import { v4 } from 'uuid';
+
+import { Button } from '@/baseComponents/inputs';
+import { SectionWrapper, SectionTitle, InfoText, HangeulPath } from '../atoms';
 
 import { RESUME, HANGEUL } from '@/lib/constants';
 
 import { usePathAnimation, useScrollTrigger } from '@/lib/hooks';
+import Link from 'next/link';
 
 interface HangeulPathLineProps {
   variant: keyof typeof HANGEUL;
@@ -39,6 +42,13 @@ const HangeulPathLine = ({ variant, percent }: HangeulPathLineProps) => {
 const SIntroduceContainer = styled.div(() => {
   return {
     maxWidth: 560,
+  };
+});
+
+const SButtonWrapper = styled.div(({ theme }) => {
+  return {
+    paddingTop: theme.typography.pxToRem(24),
+    maxWidth: '360px',
   };
 });
 
@@ -113,6 +123,11 @@ export function Introduction() {
             );
           })}
         </div>
+        <SButtonWrapper>
+          <Link href={'/resume/introduce'} passHref>
+            <Button>자기소개서 읽으러가기</Button>
+          </Link>
+        </SButtonWrapper>
       </SIntroduceContainer>
       <SInteractionHangeulContainer>
         {hangeulArray.map(variant => {

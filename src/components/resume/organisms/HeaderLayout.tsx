@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { Icon } from '@/baseComponents';
 
 import { ActionBarLayout } from '../moecules';
+import Link from 'next/link';
 
 const SContainer = styled.header(({ theme }) => {
   return {
@@ -39,6 +40,7 @@ const SLogo = styled.h1(() => {
   return {
     display: 'flex',
     alignItems: 'center',
+    cursor: 'pointer',
   };
 });
 const SSubTitle = styled.span(({ theme }) => {
@@ -51,18 +53,26 @@ const SSubTitle = styled.span(({ theme }) => {
   };
 });
 
-export const HeaderLayout = forwardRef<HTMLHeadElement>((props, rootRef) => {
-  return (
-    <SContainer ref={rootRef}>
-      <SWrapper>
-        <SLogo>
-          <Icon icon="Symbol" color="primary" size={'large'} />
-          <SSubTitle>이력서</SSubTitle>
-        </SLogo>
-        <ActionBarLayout />
-      </SWrapper>
-    </SContainer>
-  );
-});
+interface HeaderLayoutProps {
+  pageTitle: string;
+}
+
+export const HeaderLayout = forwardRef<HTMLHeadElement, HeaderLayoutProps>(
+  ({ pageTitle }, rootRef) => {
+    return (
+      <SContainer ref={rootRef}>
+        <SWrapper>
+          <Link href={'/resume'} passHref>
+            <SLogo>
+              <Icon icon="Symbol" color="primary" size={'large'} />
+              <SSubTitle>{pageTitle}</SSubTitle>
+            </SLogo>
+          </Link>
+          <ActionBarLayout />
+        </SWrapper>
+      </SContainer>
+    );
+  },
+);
 
 HeaderLayout.displayName = 'HeaderLayout';
