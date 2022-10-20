@@ -17,9 +17,16 @@ const SWrapper = styled.div(() => {
   };
 });
 
-interface ResumeLayoutProps extends React.PropsWithChildren<{}> {}
+interface ResumeLayoutProps extends React.PropsWithChildren<{}> {
+  pageTitle: string;
+  footerNavVisible?: boolean;
+}
 
-export function ResumePageLayout({ children }: ResumeLayoutProps) {
+export function ResumePageLayout({
+  children,
+  pageTitle,
+  footerNavVisible = true,
+}: ResumeLayoutProps) {
   const footerElRef = useRef(null);
   const entry = useIntersectionObserver(footerElRef, { threshold: 0 });
   const isFooterVisible = !!entry?.isIntersecting;
@@ -31,12 +38,16 @@ export function ResumePageLayout({ children }: ResumeLayoutProps) {
 
   return (
     <SContainer ref={el => registerTriggerTarget(el as HTMLDivElement)}>
-      <HeaderLayout />
+      <HeaderLayout pageTitle={pageTitle} />
       <SWrapper>
         <MainLayout page={children} />
         <TopButton isBottom={isFooterVisible} isVisible={isVisible} />
       </SWrapper>
-      <FooterLayout ref={footerElRef} />
+      <FooterLayout
+        ref={footerElRef}
+        pageTitle={pageTitle}
+        footerNavVisible={footerNavVisible}
+      />
     </SContainer>
   );
 }

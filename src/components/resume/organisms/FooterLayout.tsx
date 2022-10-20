@@ -75,47 +75,58 @@ const SFooterLink = styled.a(() => {
   };
 });
 
-export const FooterLayout = forwardRef<HTMLDivElement>((props, rootRef) => {
-  const thisYear = new Date().getFullYear();
-  return (
-    <SContainer ref={rootRef}>
-      <SPaper>
-        <SPaperTitle>
-          {thisYear}
-          <br />
-          프론트엔드 개발자 <SHighlight>지기역</SHighlight> 이력서를
-          <br />
-          끝까지 읽어주셔서 감사합니다.
-        </SPaperTitle>
-        <SFooterListContainer>
-          <FooterList
-            title="이력서 지도"
-            list={Object.entries(RESUME)
-              .filter(([_, item]) => item?.header?.title && item?.header?.id)
-              .map(([_, { header }]) => {
-                return (
-                  <SFooterLink href={`#${header.id}`} key={header.id}>
-                    {header.title}
-                  </SFooterLink>
-                );
-              })}
-          />
-          <FooterList
-            title="운영"
-            list={RESUME.contact.category
-              .filter(item => item.type === 'link')
-              .map(({ title, href }) => {
-                return (
-                  <SFooterLink href={href} target={'_blank'} key={href}>
-                    {title}
-                  </SFooterLink>
-                );
-              })}
-          />
-        </SFooterListContainer>
-      </SPaper>
-    </SContainer>
-  );
-});
+interface FooterLayoutProps {
+  pageTitle: string;
+  footerNavVisible: boolean;
+}
+
+export const FooterLayout = forwardRef<HTMLDivElement, FooterLayoutProps>(
+  ({ pageTitle, footerNavVisible }, rootRef) => {
+    const thisYear = new Date().getFullYear();
+    return (
+      <SContainer ref={rootRef}>
+        <SPaper>
+          <SPaperTitle>
+            {thisYear}
+            <br />
+            프론트엔드 개발자 <SHighlight>지기역</SHighlight> {pageTitle}를
+            <br />
+            끝까지 읽어주셔서 감사합니다.
+          </SPaperTitle>
+          {footerNavVisible && (
+            <SFooterListContainer>
+              <FooterList
+                title="이력서 지도"
+                list={Object.entries(RESUME)
+                  .filter(
+                    ([_, item]) => item?.header?.title && item?.header?.id,
+                  )
+                  .map(([_, { header }]) => {
+                    return (
+                      <SFooterLink href={`#${header.id}`} key={header.id}>
+                        {header.title}
+                      </SFooterLink>
+                    );
+                  })}
+              />
+              <FooterList
+                title="운영"
+                list={RESUME.contact.category
+                  .filter(item => item.type === 'link')
+                  .map(({ title, href }) => {
+                    return (
+                      <SFooterLink href={href} target={'_blank'} key={href}>
+                        {title}
+                      </SFooterLink>
+                    );
+                  })}
+              />
+            </SFooterListContainer>
+          )}
+        </SPaper>
+      </SContainer>
+    );
+  },
+);
 
 FooterLayout.displayName = 'FooterLayout';

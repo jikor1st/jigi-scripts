@@ -3,7 +3,7 @@ const lightPalette: ThemePalette = {
   mode: 'light',
   primary: {
     main: '#0077FF',
-    dark: '#0A3363',
+    dark: '#0c61c1',
     light: '#DCEDFF',
     contrast: '#F5FAFF',
   },
@@ -65,7 +65,7 @@ const darkPalette: ThemePalette = {
   mode: 'dark',
   primary: {
     main: '#0077FF',
-    dark: '#0A3363',
+    dark: '#0c61c1',
     light: '#AFD4FF',
     contrast: '#F5FAFF',
   },
